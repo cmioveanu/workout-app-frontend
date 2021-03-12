@@ -38,8 +38,13 @@
     align-items: center;
 }
 
+.individualExercises div {
+    white-space: nowrap;
+}
+
 .historyButton {
     background-color: #2fd5cd;
+    margin-left: 1rem;
 }
 
 .historyButton:hover {
