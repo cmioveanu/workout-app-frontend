@@ -1,0 +1,6 @@
+.individualExercises {
+    border-bottom: 1px solid #2fd5cd;
+    display: flex;
+    justify-content: space-between;
+}
+

@@ -1,0 +1,39 @@
+header {
+    padding: 0 5%;
+    background: #333333;
+}
+
+header h1 {
+    color: white;
+}
+
+.mainNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mainNav ul {
+    list-style-type: none;
+    display: flex;
+}
+
+.mainNav ul li {
+    margin: 8px;
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding-bottom: 3px;
+    box-sizing: content-box;
+    border-bottom: 1px solid #333333;
+}
+
+.mainNav ul li:hover {
+    border-color: #2fd5cd;
+}
+
+.mainNav a {
+    text-decoration: none;
+    color: white;
+}
