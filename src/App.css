@@ -1,4 +1,28 @@
+.mainContainer {
+    padding: 5%;
+}
+
 main {
     display: flex;
     justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h2 {
+    font-size: 1.25rem;
+}
+
+button {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 13px;
+    padding: 8px;
+    border-radius: 0%;
+    border: none;
+    color: white;
+}
+
+button:hover {
+    cursor: pointer;
 }

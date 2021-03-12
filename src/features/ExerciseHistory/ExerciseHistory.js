@@ -35,9 +35,9 @@ export const ExerciseHistory = () => {
     const [numberOfHistoryRows, setNumberOfHistoryRows] = useState(10);
     const [exerciseHistory, setExerciseHistory] = useState([
         {
-        date: "21 March 2020",
-        timeUnderLoad: 45,
-        negatives: 10
+            date: "21 March 2020",
+            timeUnderLoad: 45,
+            negatives: 10
         },
     ]);
 
@@ -50,25 +50,23 @@ export const ExerciseHistory = () => {
     };
 
     return (
-        <section>
-            <h2>
-                <select name="exercise" onchange={() => fetchExerciseHistory(this.value)}>
-                    {
-                        listOfExercises.map(item => (
-                            <option value={item}>{item}</option>
-                        ))
-                    }
-                </select>
-            </h2>
-            <p>Select a different exercise to see its history</p>
+        <section className={styles.exerciseHistory}>
+            <select name="exercise" onchange={() => fetchExerciseHistory(this.value)}>
+                {
+                    listOfExercises.map(item => (
+                        <option value={item}>{item}</option>
+                    ))
+                }
+            </select>
+            <p className={styles.description}>Select a different exercise to see its history</p>
 
             <div>
                 {
                     exerciseHistory.map(historyItem => (
                         <div className={styles.historyItem}>
-                            <p className={styles.exerciseDate}>{historyItem.date}</p>
-                            <p>Time under load: {historyItem.timeUnderLoad}</p>
-                            <p>Negatives: {historyItem.negatives}</p>
+                            <p className={styles.date}>{historyItem.date}</p>
+                            <p className={styles.timeAndNegative}>Time under load: <span>{historyItem.timeUnderLoad}s</span></p>
+                            <p className={styles.timeAndNegative}>Negatives: <span>{historyItem.negatives}</span></p>
                         </div>
                     ))
                 }

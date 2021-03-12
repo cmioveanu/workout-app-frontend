@@ -1,5 +1,53 @@
+.exerciseHistory {
+    width: 50%;
+    padding: 0 0 0 5%;
+    border-left: 2px solid #2fd5cd;
+}
+
+.exerciseHistory button {
+    background-color: #333333;
+    margin-top: 1rem;
+}
+
+.exerciseHistory button:hover {
+    background-color: #2fd5cd;
+}
+
+.exerciseHistory select {
+    font-size: 2.5rem;
+    font-weight: bold;
+    background: none;
+    border: none;
+
+    /* remove select arrow - will replace with custom arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+
+.description {
+    color: #2fd5cd;
+    font-style: italic;
+}
+
+
 .historyItem {
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid #2fd5cd;
+}
+
+.historyItem .date {
+    font-style: italic;
+}
+
+.historyItem .timeAndNegative {
+    text-transform: uppercase;
+    color:#2fd5cd;
+}
+
+.historyItem .timeAndNegative span {
+    color: #333333;
+    text-transform: lowercase;
 }

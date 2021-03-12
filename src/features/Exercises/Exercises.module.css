@@ -1,6 +1,57 @@
+.exercises {
+    width: 50%;
+    padding: 0 5% 0 0;
+}
+
+.createNew input {
+    margin-top: 8px;
+    margin-bottom: 12px;
+    padding: 8px;
+    border-radius: 0;
+    border: 1px solid #2fd5cd;
+}
+
+.createNew input:focus {
+    outline: none;
+    border-color: #333333;
+}
+
+.createNew label {
+    text-transform: uppercase;
+    color: #2fd5cd;
+    font-size: 14px;
+    font-weight: 500;
+}
+.createNew button {
+    margin-bottom: 1.25rem;
+    background-color: #2fd5cd;
+}
+
+.createNew button:hover {
+    background-color: #333333;
+}
+
 .individualExercises {
     border-bottom: 1px solid #2fd5cd;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.historyButton {
+    background-color: #2fd5cd;
+}
+
+.historyButton:hover {
+    background-color: #333333;
+}
+
+.editButton {
+    background-color:#333333;
+    margin-left: 10px;
+}
+
+.editButton:hover {
+    background-color: #2fd5cd;
 }
 
