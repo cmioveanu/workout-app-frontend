@@ -1,6 +1,9 @@
-import react from 'react';
+import react, { useEffect } from 'react';
 import styles from './Exercises.module.css';
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { getExercisesList } from './ExercisesSlice';
 
 /*
     # Create new exercise
@@ -13,23 +16,39 @@ import { useState } from 'react';
 
 
 export const Exercises = () => {
-    const exercises = ["Pushups", "Pullups", "Hanging leg raises", "Nordic curls"];
+    //const exercises = ["Pushups", "Pullups", "Hanging leg raises", "Nordic curls"];
+    const dispatch = useDispatch();
+    const exercises = useSelector(state => state.exercises.exercisesList);
     const [exerciseName, setExerciseName] = useState("");
+
+    const getExercises = async () => {
+        const exercises = await fetch("http://localhost:8080/myExercises");
+        const jsonExercises = await exercises.json();
+
+        dispatch(getExercisesList(jsonExercises));
+    }
+
+    useEffect(() => {
+        getExercises();
+    }, []);
 
     const handleChange = (event) => {
         setExerciseName(event.target.value);
-        console.log(exerciseName);
     }
 
     const handleSubmit = (event) => {
         fetch("http://localhost:8080/myExercises", {
             method: 'POST',
-            body: JSON.stringify({"name": exerciseName}),
+            body: JSON.stringify({ "name": exerciseName }),
             headers: {
                 "content-type": "application/json"
-            }
-        });
+        }})
+        .then(res => res.json())
+        .then(jsonRes => dispatch(getExercisesList(jsonRes)));
+        
         event.preventDefault();
+
+        setExerciseName("");
     }
 
 
@@ -40,16 +59,16 @@ export const Exercises = () => {
                 <form onSubmit={handleSubmit}>
                     <label for="newExercise">New exercise name:</label>
                     <br />
-                    <input type="text" value={exerciseName} onChange={handleChange} id="newExercise"/>
+                    <input type="text" value={exerciseName} onChange={handleChange} id="newExercise" />
                     <br />
-                    <input type="submit" value="Create new exercise" className={styles.submitButton}/>
+                    <input type="submit" value="Create new exercise" className={styles.submitButton} />
                 </form>
             </div>
 
             {
                 exercises.map(exercise => (
                     <div className={styles.individualExercises}>
-                        <h2>{exercise}</h2>
+                        <h2>{exercise.name}</h2>
                         <div>
                             <button className={styles.historyButton}>History</button>
                             <button className={styles.editButton}>Edit</button>

@@ -1,6 +1,7 @@
 import react, { useEffect } from 'react';
 import styles from './ExerciseHistory.module.css';
 import { useState } from 'react';
+import {useSelector} from 'react-redux';
 
 
 /*  
@@ -31,30 +32,35 @@ import { useState } from 'react';
 
 
 export const ExerciseHistory = () => {
-    const listOfExercises = ["Pushups", "Pullups", "Hanging leg raises", "Nordic curls"];
+    //const listOfExercises = ["Pushups", "Pullups", "Hanging leg raises", "Nordic curls"];
+
+    const listOfExercises = useSelector(state => state.exercises.exercisesList);
+
     const [numberOfHistoryRows, setNumberOfHistoryRows] = useState(10);
-    const [exerciseHistory, setExerciseHistory] = useState([
-        {
-            date: "21 March 2020",
-            timeUnderLoad: 45,
-            negatives: 10
-        },
-    ]);
+    const [exerciseHistory, setExerciseHistory] = useState([]);
 
-    const baseUrl = "http://localhost:8080/";
+    const baseUrl = "http://localhost:8080/myExercises/";
 
-    const fetchExerciseHistory = async (selectedExercise) => {
-        const fetchUrl = baseUrl + selectedExercise + `number=${numberOfHistoryRows}`;
+    const fetchExerciseHistory = async (event) => {
+        const exerciseName = event.target.value;
+        const exerciseId = listOfExercises.find(exercise => exercise.name === exerciseName).id;
+
+        const fetchUrl = baseUrl + `${exerciseId}` + `/${numberOfHistoryRows}`;
+
         const exerciseHistoryResults = await fetch(fetchUrl);
-        setExerciseHistory(exerciseHistoryResults);
+        const jsonExerciseHistoryResults = await exerciseHistoryResults.json();
+        console.log(jsonExerciseHistoryResults);
+        setExerciseHistory(jsonExerciseHistoryResults);
     };
+
+
 
     return (
         <section className={styles.exerciseHistory}>
-            <select name="exercise" onchange={() => fetchExerciseHistory(this.value)}>
+            <select name="exercise" onChange={fetchExerciseHistory}>
                 {
                     listOfExercises.map(item => (
-                        <option value={item}>{item}</option>
+                        <option value={item.name}>{item.name}</option>
                     ))
                 }
             </select>
