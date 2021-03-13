@@ -9,6 +9,7 @@
     padding: 8px;
     border-radius: 0;
     border: 1px solid #2fd5cd;
+    min-width: 250px;
 }
 
 .createNew input:focus {
@@ -22,13 +23,19 @@
     font-size: 14px;
     font-weight: 500;
 }
-.createNew button {
+.createNew .submitButton {
     margin-bottom: 1.25rem;
     background-color: #2fd5cd;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    min-width: 267px;
 }
 
-.createNew button:hover {
+.createNew .submitButton:hover {
     background-color: #333333;
+    cursor: pointer;
 }
 
 .individualExercises {
