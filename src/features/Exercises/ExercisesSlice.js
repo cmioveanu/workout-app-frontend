@@ -1,19 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 
+
 export const exercisesSlice = createSlice({
   name: 'exercises',
   initialState: {
-    exercisesList: ["Hello state"]
+    exercisesList: [],
+    activeExercise: {name: "N/A", id: 0}
   },
   reducers: {
     getExercisesList: (state, action) => {
-      state.exercisesList = action.payload;
-    }
+      state.exercisesList = action.payload
+    },
+    changeActiveExercise: (state, action) => {
+      state.activeExercise = action.payload
+    },
   }
 });
 
-export const { getExercisesList } = exercisesSlice.actions;
+export const { getExercisesList, changeActiveExercise } = exercisesSlice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
