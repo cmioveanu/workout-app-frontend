@@ -1,0 +1,69 @@
+.exercises {
+    width: 50%;
+    padding: 0 5% 0 0;
+}
+
+.createNew input {
+    margin-top: 8px;
+    margin-bottom: 12px;
+    padding: 8px;
+    border-radius: 0;
+    border: 1px solid #2fd5cd;
+    min-width: 250px;
+}
+
+.createNew input:focus {
+    outline: none;
+    border-color: #333333;
+}
+
+.createNew label {
+    text-transform: uppercase;
+    color: #2fd5cd;
+    font-size: 14px;
+    font-weight: 500;
+}
+.createNew .submitButton {
+    margin-bottom: 1.25rem;
+    background-color: #2fd5cd;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    min-width: 267px;
+}
+
+.createNew .submitButton:hover {
+    background-color: #333333;
+    cursor: pointer;
+}
+
+.individualExercises {
+    border-bottom: 1px solid #2fd5cd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.individualExercises div {
+    white-space: nowrap;
+}
+
+.historyButton {
+    background-color: #2fd5cd;
+    margin-left: 1rem;
+}
+
+.historyButton:hover {
+    background-color: #333333;
+}
+
+.editButton {
+    background-color:#333333;
+    margin-left: 10px;
+}
+
+.editButton:hover {
+    background-color: #2fd5cd;
+}
+

@@ -1,0 +1,61 @@
+.modal {
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background:rgba(0,0,0,0.7);
+    z-index:1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.elementsBackground {
+    background-color: white;
+    padding: 2.5%;
+}
+
+.elementsBackground h2 {
+    margin: 0;
+}
+
+
+/* Buttons */
+.buttonsContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.editButton {
+    background-color: #2fd5cd;
+}
+
+.editButton:hover {
+    background-color: #333;
+}
+
+.deleteButton {
+    background-color: #333;
+}
+
+.deleteButton:hover {
+    background-color: #2fd5cd;
+}
+
+
+/* Input */
+.modal input {
+    margin-top: 8px;
+    margin-bottom: 12px;
+    padding: 8px;
+    border-radius: 0;
+    border: 1px solid #2fd5cd;
+    min-width: 250px;
+}
+
+.modal input:focus {
+    outline: none;
+    border-color: #333333;
+}
