@@ -1,7 +1,7 @@
-import react, { useEffect } from 'react';
-import styles from './ExerciseHistory.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import styles from './ExerciseHistory.module.css';
+
 
 
 /*  
@@ -28,23 +28,21 @@ export const ExerciseHistory = () => {
     const [exerciseHistory, setExerciseHistory] = useState([]);
 
 
-    //function to get the history of the exercise
-    const fetchExerciseHistory = async () => {
-        const baseUrl = "http://localhost:8080/myExercises/";
-
-        const fetchUrl = baseUrl + `${activeExercise.id}` + `/${numberOfHistoryRows}`;
-
-        const exerciseHistoryResults = await fetch(fetchUrl);
-        const jsonExerciseHistoryResults = await exerciseHistoryResults.json();
-
-        setExerciseHistory(jsonExerciseHistoryResults);
-    };
-
-
-    //get the history when component is mounted
+     //get the history of the exercise when component is mounted
     useEffect(() => {
+        const fetchExerciseHistory = async () => {
+            const baseUrl = "http://localhost:8080/myExercises/";
+    
+            const fetchUrl = baseUrl + activeExercise.id + `/${numberOfHistoryRows}`;
+    
+            const exerciseHistoryResults = await fetch(fetchUrl);
+            const jsonExerciseHistoryResults = await exerciseHistoryResults.json();
+    
+            setExerciseHistory(jsonExerciseHistoryResults);
+        };
+
         fetchExerciseHistory();
-    }, [activeExercise]);
+    }, [activeExercise, numberOfHistoryRows]);
 
 
     //convert date from database string to a better display format
@@ -81,7 +79,7 @@ export const ExerciseHistory = () => {
             <div>
                 {
                     exerciseHistory.map(historyItem => (
-                        <div className={styles.historyItem}>
+                        <div className={styles.historyItem} key={historyItem.date}>
                             <p className={styles.date}>{dateConverter(historyItem.date)}</p>
                             <p className={styles.timeAndNegative}>Time under load: <span>{historyItem.timeUnderLoad}s</span></p>
                             <p className={styles.timeAndNegative}>Negatives: <span>{historyItem.negatives}</span></p>
