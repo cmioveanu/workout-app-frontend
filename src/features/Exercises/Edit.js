@@ -41,11 +41,27 @@ export const Edit = props => {
 
 
     //send a request to delete from database and close modal
-    const handleDeleteClick = () => {
+    const handleDeleteClick = async () => {
+        const baseUrl = "http://localhost:8080/myExercises/";
+        const fetchUrl = baseUrl + props.exerciseToEdit.id;
+
+        const fetchOptions = {
+            method: 'DELETE',
+            headers: {
+                "content-type": "application/json"
+            }
+        };
+
+        const exercisesList = await fetch(fetchUrl, fetchOptions);
+        const jsonExercisesList = await exercisesList.json();
+        dispatch(getExercisesList(jsonExercisesList));
+
+
         dispatch(toggleEditExercisesShow());
     }
 
 
+    //update new exercise name as you type
     const handleNameChange = (event) => {
         setNewExerciseName(event.target.value);
     }
