@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './Exercises.module.css';
 
-import { getExercisesList } from './ExercisesSlice';
-import { changeActiveExercise } from './ExercisesSlice';
+import { getExercisesList, changeActiveExercise, toggleEditExercisesShow } from './ExercisesSlice';
+
+import { Edit } from './Edit';
 
 /*
     # Create new exercise
@@ -19,7 +20,8 @@ export const Exercises = () => {
     const dispatch = useDispatch();
 
     const exercises = useSelector(state => state.exercises.exercisesList);
-    const [exerciseName, setExerciseName] = useState("");
+    const [newExerciseName, setNewExerciseName] = useState("");
+    const [exerciseToEdit, setExerciseToEdit] = useState(null);
 
 
     //get exercises and set first index as active element when component mounts
@@ -36,9 +38,9 @@ export const Exercises = () => {
     }, [dispatch]);
 
 
-    //change input when typing
+    //change new exercise name when typing
     const handleChange = (event) => {
-        setExerciseName(event.target.value);
+        setNewExerciseName(event.target.value);
     }
 
 
@@ -46,7 +48,7 @@ export const Exercises = () => {
     const handleSubmit = (event) => {
         fetch("http://localhost:8080/myExercises", {
             method: 'POST',
-            body: JSON.stringify({ "name": exerciseName }),
+            body: JSON.stringify({ "name": newExerciseName }),
             headers: {
                 "content-type": "application/json"
             }
@@ -55,7 +57,7 @@ export const Exercises = () => {
             .then(jsonRes => dispatch(getExercisesList(jsonRes)));
 
         event.preventDefault();
-        setExerciseName("");
+        setNewExerciseName("");
     }
 
 
@@ -65,8 +67,11 @@ export const Exercises = () => {
     }
 
 
-    //edit exercise entry
-    //have a new name input and a delete button
+    //display or hide the modal with the right exercise
+    const handleEditClick = (IDOfExerciseToEdit) => {
+        setExerciseToEdit(IDOfExerciseToEdit);
+        dispatch(toggleEditExercisesShow());
+    }
 
 
     return (
@@ -75,11 +80,13 @@ export const Exercises = () => {
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="newExercise">New exercise name:</label>
                     <br />
-                    <input type="text" value={exerciseName} onChange={handleChange} id="newExercise" />
+                    <input type="text" value={newExerciseName} onChange={handleChange} id="newExercise" />
                     <br />
                     <input type="submit" value="Create new exercise" className={styles.submitButton} />
                 </form>
             </div>
+
+
 
             {   /* Map exercises from global state for display */
                 exercises.map(exercise => (
@@ -89,16 +96,17 @@ export const Exercises = () => {
                             <div>
                                 <button className={styles.historyButton}
                                     onClick={() => handleClick(exercise)}>History</button>
-                                <button className={styles.editButton}>Edit</button>
+                                <button className={styles.editButton} onClick={() => handleEditClick(exercise)}>Edit</button>
                             </div>
                         </div>
-                        <div if={"exercise" + exercise.id}>
-
-                        </div>
                     </div>
-
                 ))
             }
+
+
+            {/* Edid component as modal, with the ID of the exercise
+                that needs to be edited/deleted in the database */}
+            <Edit exerciseToEdit={exerciseToEdit} />
 
         </section>
     );
