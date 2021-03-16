@@ -12,6 +12,7 @@ export const Edit = props => {
 
     const showModal = useSelector(state => state.routines.editRoutineShow);
     const exercisesRoutines = useSelector(state => state.routines.routinesExercisesList);
+    const exercises = useSelector(state => state.exercises.exercisesList);
 
     const [newRoutineName, setNewRoutineName] = useState("");
 
@@ -104,6 +105,13 @@ export const Edit = props => {
             <div className={styles.elementsBackground}>
                 <h2>Edit {props.routineToEdit.name}:</h2> <br />
                 <input type="text" placeholder="enter new name for routine" onChange={handleNameChange} />
+
+                {/* Drop-down with all the exercises this user has created */}
+                <select>
+                    {exercises.map(exercise => {
+                        <option value={exercise.name}>{exercise.name}</option>
+                    })}
+                </select>
 
                 {/* For current routine, display the corresponding exercises. */}
                 {
