@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './Routines.module.css';
 
-import { getRoutinesList, changeActiveRoutine, toggleEditRoutinesShow } from './RoutinesSlice';
+import { getRoutinesList, getRoutinesExercisesList, changeActiveRoutine, toggleEditRoutinesShow } from './RoutinesSlice';
 
 import { Edit } from './Edit';
 
@@ -13,7 +13,7 @@ export const Routines = () => {
     const dispatch = useDispatch();
 
     const routines = useSelector(state => state.routines.routinesList);
-    const [exercisesRoutines, setExercisesRoutines] = useState([]);
+    const exercisesRoutines = useSelector(state => state.routines.routinesExercisesList);
 
     const [newRoutineName, setNewRoutineName] = useState("");
     const [routineToEdit, setRoutineToEdit] = useState(null);
@@ -39,7 +39,7 @@ export const Routines = () => {
             const exercisesRoutines = await fetch("http://localhost:8080/myRoutines/exercises");
             const jsonExercisesRoutines = await exercisesRoutines.json();
 
-            setExercisesRoutines(jsonExercisesRoutines);
+            dispatch(getRoutinesExercisesList(jsonExercisesRoutines));
         };
 
         getExercisesRoutines();
@@ -86,7 +86,7 @@ export const Routines = () => {
     const displayExercises = (routineID) => {
         return exercisesRoutines.filter(exercise => exercise.routine_id === routineID);
     }
-    
+
 
     return (
         <section className={styles.routines}>

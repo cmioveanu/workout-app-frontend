@@ -6,12 +6,16 @@ export const routinesSlice = createSlice({
   name: 'routines',
   initialState: {
     routinesList: [],
+    routinesExercisesList: [],
     activeRoutine: { name: "N/A", id: 0 },
     editRoutineShow: false,
   },
   reducers: {
     getRoutinesList: (state, action) => {
-      state.routinesList = action.payload
+      state.routinesList = action.payload;
+    },
+    getRoutinesExercisesList: (state, action) => {
+      state.routinesExercisesList = action.payload;
     },
     changeActiveRoutine: (state, action) => {
       state.activeRoutine = action.payload;
@@ -22,7 +26,7 @@ export const routinesSlice = createSlice({
   }
 });
 
-export const { getRoutinesList, changeActiveRoutine, toggleEditRoutinesShow } = routinesSlice.actions;
+export const { getRoutinesList, getRoutinesExercisesList, changeActiveRoutine, toggleEditRoutinesShow } = routinesSlice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
