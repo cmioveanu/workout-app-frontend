@@ -68,8 +68,8 @@ export const Exercises = () => {
 
 
     //display or hide the modal with the right exercise
-    const handleEditClick = (IDOfExerciseToEdit) => {
-        setExerciseToEdit(IDOfExerciseToEdit);
+    const handleEditClick = (exerciseForEdit) => {
+        setExerciseToEdit(exerciseForEdit);
         dispatch(toggleEditExercisesShow());
     }
 

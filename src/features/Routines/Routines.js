@@ -86,6 +86,7 @@ export const Routines = () => {
     const displayExercises = (routineID) => {
         return exercisesRoutines.filter(exercise => exercise.routine_id === routineID);
     }
+    
 
     return (
         <section className={styles.routines}>

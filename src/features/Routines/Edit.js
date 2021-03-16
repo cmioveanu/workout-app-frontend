@@ -43,7 +43,7 @@ export const Edit = props => {
     //send a request to delete from database and close modal
     const handleDeleteClick = async () => {
         const baseUrl = "http://localhost:8080/myRoutines/";
-        const fetchUrl = baseUrl + props.RoutineToEdit.id;
+        const fetchUrl = baseUrl + props.routineToEdit.id;
 
         const fetchOptions = {
             method: 'DELETE',
