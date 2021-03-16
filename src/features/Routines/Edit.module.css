@@ -11,6 +11,32 @@
     justify-content: center;
 }
 
+
+.individualExContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #2fd5cd;
+}
+
+.individualExContainer .individualExercises {
+    color: #333;
+    font-weight: 500;
+    margin: 0.5rem 0;
+}
+
+.individualExContainer button {
+    background: #2fd5cd;
+    padding: 0.5rem;
+    margin: 1rem 0 1rem 1rem;
+}
+
+.individualExContainer button:hover {
+    background: #333;
+}
+
+
+
 .elementsBackground {
     background-color: white;
     padding: 2.5%;
@@ -25,7 +51,7 @@
 .buttonsContainer {
     display: flex;
     justify-content: space-between;
-    margin-top: 1rem;
+    margin-top: 2rem;
 }
 
 .editButton {
@@ -37,11 +63,14 @@
 }
 
 .deleteButton {
-    background-color: #333;
+    background-color: white;
+    border: 1px solid #333;
+    color: #333;
 }
 
 .deleteButton:hover {
-    background-color: #2fd5cd;
+    background-color: #333;
+    color: white;
 }
 
 

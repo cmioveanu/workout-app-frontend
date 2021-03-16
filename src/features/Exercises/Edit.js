@@ -73,7 +73,7 @@ export const Edit = props => {
                 <input type="text" placeholder="enter new name" onChange={handleNameChange} />
                 <div className={styles.buttonsContainer}>
                     <button className={styles.editButton} onClick={handleDoneClick}>Done</button>
-                    <button className={styles.deleteButton} onClick={handleDeleteClick}>Delete</button>
+                    <button className={styles.deleteButton} onClick={handleDeleteClick}>Delete exercise</button>
                 </div>
             </div>
         </div>

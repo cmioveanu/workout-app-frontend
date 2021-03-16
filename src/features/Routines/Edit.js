@@ -5,11 +5,14 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './Edit.module.css';
 
-import { getRoutinesList, toggleEditRoutinesShow } from './RoutinesSlice';
+import { getRoutinesList, getRoutinesExercisesList, toggleEditRoutinesShow } from './RoutinesSlice';
 
 export const Edit = props => {
     const dispatch = useDispatch();
+
     const showModal = useSelector(state => state.routines.editRoutineShow);
+    const exercisesRoutines = useSelector(state => state.routines.routinesExercisesList);
+
     const [newRoutineName, setNewRoutineName] = useState("");
 
     if (!showModal) {
@@ -40,7 +43,7 @@ export const Edit = props => {
     };
 
 
-    //send a request to delete from database and close modal
+    //send a request to delete routine from database and close modal
     const handleDeleteClick = async () => {
         const baseUrl = "http://localhost:8080/myRoutines/";
         const fetchUrl = baseUrl + props.routineToEdit.id;
@@ -66,15 +69,58 @@ export const Edit = props => {
         setNewRoutineName(event.target.value);
     }
 
+
+    //display exercises for current routine to be edited
+    const displayExercises = () => {
+        return exercisesRoutines.filter(exercise => exercise.routine_id === props.routineToEdit.id);
+    }
+
+
+    //remove exercise from this routine
+    const removeExercise = async (exerciseID) => {
+        const baseUrl = "http://localhost:8080/myRoutines/";
+        const fetchUrl = baseUrl + props.routineToEdit.id + "/" + exerciseID;
+
+        const fetchOptions = {
+            method: 'DELETE',
+            headers: {
+                "content-type": "application/json"
+            }
+        };
+
+        const routinesExercisesList = await fetch(fetchUrl, fetchOptions);
+        const jsonRoutinesExercisesList = await routinesExercisesList.json();
+        dispatch(getRoutinesExercisesList(jsonRoutinesExercisesList));
+
+
+        dispatch(toggleEditRoutinesShow());
+    }
+    //X button to delete exercise from exercises_routines
+    //add button to add exercise to exercises_routines
+
+
     return (
         <div className={styles.modal}>
             <div className={styles.elementsBackground}>
                 <h2>Edit {props.routineToEdit.name}:</h2> <br />
-                <input type="text" placeholder="enter new name" onChange={handleNameChange} />
+                <input type="text" placeholder="enter new name for routine" onChange={handleNameChange} />
+
+                {/* For current routine, display the corresponding exercises. */}
+                {
+                    displayExercises().map(exercise => (
+                        <div className={styles.individualExContainer}>
+                            <p key={exercise.id} className={styles.individualExercises}>{exercise.name}</p>
+                            <button onClick={() => removeExercise(exercise.id)}>Remove</button>
+                        </div>
+                    ))
+                }
+
                 <div className={styles.buttonsContainer}>
                     <button className={styles.editButton} onClick={handleDoneClick}>Done</button>
-                    <button className={styles.deleteButton} onClick={handleDeleteClick}>Delete</button>
+                    <button className={styles.deleteButton} onClick={handleDeleteClick}>Delete routine</button>
                 </div>
+
+
             </div>
         </div>
     );
