@@ -20,7 +20,6 @@
 .createNew label {
     text-transform: uppercase;
     color: #2fd5cd;
-    font-size: 14px;
     font-weight: 500;
 }
 .createNew .submitButton {
