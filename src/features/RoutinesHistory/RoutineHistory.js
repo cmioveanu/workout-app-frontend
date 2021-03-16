@@ -4,37 +4,37 @@ import styles from './RoutineHistory.module.css';
 
 
 export const RoutineHistory = () => {
-    const activeExercise = useSelector(state => state.exercises.activeExercise);
+    const activeRoutine = useSelector(state => state.routines.activeRoutine);
     const [numberOfHistoryRows, setNumberOfHistoryRows] = useState(10);
-    const [exerciseHistory, setExerciseHistory] = useState([]);
+    const [routineHistory, setRoutineHistory] = useState([]);
 
 
-     //get the history of the exercise when component is mounted
+     //get the history of the Routine when component is mounted
     useEffect(() => {
-        const fetchExerciseHistory = async () => {
-            const baseUrl = "http://localhost:8080/myExercises/";
+        const fetchRoutineHistory = async () => {
+            const baseUrl = "http://localhost:8080/myRoutines/";
     
-            const fetchUrl = baseUrl + activeExercise.id + `/${numberOfHistoryRows}`;
+            const fetchUrl = baseUrl + activeRoutine.id + `/${numberOfHistoryRows}`;
     
-            const exerciseHistoryResults = await fetch(fetchUrl);
-            const jsonExerciseHistoryResults = await exerciseHistoryResults.json();
+            const routineHistoryResults = await fetch(fetchUrl);
+            const jsonRoutineHistoryResults = await routineHistoryResults.json();
     
-            setExerciseHistory(jsonExerciseHistoryResults);
+            setRoutineHistory(jsonRoutineHistoryResults);
         };
 
-        fetchExerciseHistory();
-    }, [activeExercise, numberOfHistoryRows]);
+        fetchRoutineHistory();
+    }, [activeRoutine, numberOfHistoryRows]);
 
 
     //convert date from database string to a better display format
-    const dateConverter = (exerciseDate) => {
+    const dateConverter = (routineDate) => {
         const monthsArray = [null, "January", "February", "March", "April",
             "May", "June", "July", "August", "September", "November", "December"];
 
-        const year = exerciseDate.slice(0, 4);
-        const day = exerciseDate.slice(8, 10);
+        const year = routineDate.slice(0, 4);
+        const day = routineDate.slice(8, 10);
 
-        let month = exerciseDate.slice(5, 7);
+        let month = routineDate.slice(5, 7);
         if (month.charAt(0) === "0") month = month.charAt(1);
         month = monthsArray[month];
 
@@ -49,17 +49,17 @@ export const RoutineHistory = () => {
 
 
     return (
-        <section className={styles.exerciseHistory}>
+        <section className={styles.routineHistory}>
 
-            {/* Display the activateExercise from global state into the section heading */}
-            <h2 className={styles.exerciseHistoryTitle}>{activeExercise.name}</h2>
-            <p className={styles.description}>Click exercise history to see past entries</p>
+            {/* Display the activateRoutine from global state into the section heading */}
+            <h2 className={styles.routineHistoryTitle}>{activeRoutine.name}</h2>
+            <p className={styles.description}>Click routine history to see past entries</p>
 
 
-            {/* Take the exerciseHistory from local state and map it for display*/}
+            {/* Take the RoutineHistory from local state and map it for display*/}
             <div>
                 {
-                    exerciseHistory.map(historyItem => (
+                    routineHistory.map(historyItem => (
                         <div className={styles.historyItem} key={historyItem.date}>
                             <p className={styles.date}>{dateConverter(historyItem.date)}</p>
                             <p className={styles.timeAndNegative}>Time under load: <span>{historyItem.timeUnderLoad}s</span></p>

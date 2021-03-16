@@ -1,8 +1,11 @@
-.exercises {
+.routines {
     width: 50%;
     padding: 0 5% 0 0;
 }
 
+
+
+/* Create new routine */
 .createNew input {
     margin-top: 8px;
     margin-bottom: 12px;
@@ -38,14 +41,17 @@
     cursor: pointer;
 }
 
-.individualExercises {
+
+
+/* Individual routines */
+.individualRoutines {
     border-bottom: 1px solid #2fd5cd;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.individualExercises div {
+.individualRoutines div {
     white-space: nowrap;
 }
 
