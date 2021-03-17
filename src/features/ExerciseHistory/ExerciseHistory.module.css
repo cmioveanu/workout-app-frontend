@@ -38,9 +38,16 @@
 .historyItem .timeAndNegative {
     text-transform: uppercase;
     color:#2fd5cd;
+    margin-left: 2rem;
 }
 
 .historyItem .timeAndNegative span {
     color: #333333;
     text-transform: lowercase;
+}
+
+
+.exerciseStats {
+    display: flex;
+    justify-content: space-between;
 }

@@ -28,17 +28,18 @@ export const ExerciseHistory = () => {
     const [exerciseHistory, setExerciseHistory] = useState([]);
 
 
-     //get the history of the exercise when component is mounted
+    //get the history of the exercise when component is mounted
     useEffect(() => {
         const fetchExerciseHistory = async () => {
             const baseUrl = "http://localhost:8080/myExercises/";
-    
+
             const fetchUrl = baseUrl + activeExercise.id + `/${numberOfHistoryRows}`;
-    
+
             const exerciseHistoryResults = await fetch(fetchUrl);
             const jsonExerciseHistoryResults = await exerciseHistoryResults.json();
-    
+
             setExerciseHistory(jsonExerciseHistoryResults);
+            console.log(jsonExerciseHistoryResults);
         };
 
         fetchExerciseHistory();
@@ -81,8 +82,10 @@ export const ExerciseHistory = () => {
                     exerciseHistory.map(historyItem => (
                         <div className={styles.historyItem} key={historyItem.date}>
                             <p className={styles.date}>{dateConverter(historyItem.date)}</p>
-                            <p className={styles.timeAndNegative}>Time under load: <span>{historyItem.timeUnderLoad}s</span></p>
-                            <p className={styles.timeAndNegative}>Negatives: <span>{historyItem.negatives}</span></p>
+                            <div className={styles.exerciseStats}>
+                                <p className={styles.timeAndNegative}>Time under load: <span>{historyItem.time_under_load}s</span></p>
+                                <p className={styles.timeAndNegative}>Negatives: <span>{historyItem.negatives}</span></p>
+                            </div>
                         </div>
                     ))
                 }
