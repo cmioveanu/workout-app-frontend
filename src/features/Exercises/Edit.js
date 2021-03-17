@@ -69,7 +69,7 @@ export const Edit = props => {
     return (
         <div className={styles.modal}>
             <div className={styles.elementsBackground}>
-                <h2>Edit {props.exerciseToEdit.name}:</h2> <br />
+                <h2>{props.exerciseToEdit.name}:</h2> <br />
                 <input type="text" placeholder="enter new name" onChange={handleNameChange} />
                 <div className={styles.buttonsContainer}>
                     <button className={styles.editButton} onClick={handleDoneClick}>Done</button>

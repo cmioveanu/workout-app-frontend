@@ -123,8 +123,8 @@ export const Edit = props => {
     return (
         <div className={styles.modal}>
             <div className={styles.elementsBackground}>
-                <h2>Edit {props.routineToEdit.name}:</h2> <br />
-                <input type="text" placeholder="enter new name for routine" onChange={handleNameChange} />
+                <h2>{props.routineToEdit.name}:</h2> <br />
+                <input type="text" placeholder="enter new name for this routine" onChange={handleNameChange} />
 
 
 

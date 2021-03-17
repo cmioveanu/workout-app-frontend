@@ -11,7 +11,7 @@
 
 .exerciseHistory button {
     background-color: #333333;
-    margin-top: 1rem;
+    margin-top: 2rem;
 }
 
 .exerciseHistory button:hover {
@@ -50,4 +50,8 @@
 .exerciseStats {
     display: flex;
     justify-content: space-between;
+}
+
+.spanPadding {
+    padding-left: 9px;
 }

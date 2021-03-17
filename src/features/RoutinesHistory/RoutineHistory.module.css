@@ -11,7 +11,7 @@
 
 .routineHistory button {
     background-color: #333333;
-    margin-top: 1rem;
+    margin-top: 2rem;
 }
 
 .routineHistory button:hover {
@@ -24,25 +24,45 @@
     margin-bottom: 2rem;
 }
 
+.historyDate {
+    margin-top: 2rem;
+    border-bottom: 1px solid #2fd5cd;
+    padding-bottom: 1rem;
+}
+
 
 
 /* history rows */
 .historyItem {
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid #2fd5cd;
 }
 
-.historyItem .date {
-    font-style: italic;
+.historyItem p {
+    margin: 8px 0;
+}
+
+.historyItem .exercise {
+    font-weight: 500;
+    color: #2fd5cd;
 }
 
 .historyItem .timeAndNegative {
     text-transform: uppercase;
     color:#2fd5cd;
+    margin-left: 2rem;
 }
 
 .historyItem .timeAndNegative span {
     color: #333333;
     text-transform: lowercase;
+}
+
+.exerciseStats {
+    display: flex;
+    justify-content: space-between;
+}
+
+.spanPadding {
+    padding-left: 9px;
 }
