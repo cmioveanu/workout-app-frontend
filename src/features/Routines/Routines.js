@@ -43,7 +43,7 @@ export const Routines = () => {
         };
 
         getExercisesRoutines();
-    }, [])
+    }, [dispatch])
 
 
     //change new Routine name when typing

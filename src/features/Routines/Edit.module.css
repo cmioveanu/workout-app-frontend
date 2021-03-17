@@ -82,9 +82,36 @@
     border-radius: 0;
     border: 1px solid #2fd5cd;
     min-width: 250px;
+    display: block;
 }
 
 .modal input:focus {
     outline: none;
     border-color: #333333;
+}
+
+
+/* Dropdown */
+
+
+
+.dropDown {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropDown select {
+    width: 50%;
+    color: #333;
+    margin: 1rem 0;
+}
+
+.dropDown button {
+    background-color: #333;
+}
+
+.dropDown button:hover {
+    background-color: #2fd5cd;
 }

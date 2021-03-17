@@ -15,6 +15,7 @@ export const Edit = props => {
     const exercises = useSelector(state => state.exercises.exercisesList);
 
     const [newRoutineName, setNewRoutineName] = useState("");
+    const [selectedExercise, setSelectedExercise] = useState(exercises[0].id);
 
     if (!showModal) {
         return null;
@@ -92,12 +93,31 @@ export const Edit = props => {
         const routinesExercisesList = await fetch(fetchUrl, fetchOptions);
         const jsonRoutinesExercisesList = await routinesExercisesList.json();
         dispatch(getRoutinesExercisesList(jsonRoutinesExercisesList));
-
-
-        dispatch(toggleEditRoutinesShow());
     }
-    //X button to delete exercise from exercises_routines
-    //add button to add exercise to exercises_routines
+
+
+    //add exercise to this routine
+    const handleAddOnChange = async (exerciseID) => {
+        const baseUrl = "http://localhost:8080/myRoutines/";
+        const fetchUrl = baseUrl + props.routineToEdit.id + "/" + exerciseID;
+
+        const fetchOptions = {
+            method: 'POST',
+            headers: {
+                "content-type": "application/json"
+            }
+        };
+
+        const routinesExercisesList = await fetch(fetchUrl, fetchOptions);
+        const jsonRoutinesExercisesList = await routinesExercisesList.json();
+        dispatch(getRoutinesExercisesList(jsonRoutinesExercisesList));
+    }
+
+
+    //change selected exercise in state
+    const handleSelectChange = (exerciseID) => {
+        setSelectedExercise(exerciseID);
+    }
 
 
     return (
@@ -106,12 +126,7 @@ export const Edit = props => {
                 <h2>Edit {props.routineToEdit.name}:</h2> <br />
                 <input type="text" placeholder="enter new name for routine" onChange={handleNameChange} />
 
-                {/* Drop-down with all the exercises this user has created */}
-                <select>
-                    {exercises.map(exercise => {
-                        <option value={exercise.name}>{exercise.name}</option>
-                    })}
-                </select>
+
 
                 {/* For current routine, display the corresponding exercises. */}
                 {
@@ -122,6 +137,18 @@ export const Edit = props => {
                         </div>
                     ))
                 }
+
+                <div className={styles.dropDown}>
+                    {/* Drop-down with all the exercises this user has created */}
+                    <select>
+                        {exercises.map(exercise => (
+                            <option value={exercise.name}
+                                key={exercise.id}
+                                onClick={() => handleSelectChange(exercise.id)}>{exercise.name}</option>
+                        ))}
+                    </select>
+                    <button onClick={() => handleAddOnChange(selectedExercise)}>Add Exercise</button>
+                </div>
 
                 <div className={styles.buttonsContainer}>
                     <button className={styles.editButton} onClick={handleDoneClick}>Done</button>
