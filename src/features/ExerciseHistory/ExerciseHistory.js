@@ -93,7 +93,7 @@ export const ExerciseHistory = () => {
                     ))
                 }
             </div>
-            {exerciseHistory.length > 0 ? <button onClick={loadMoreHistory}>Load more history</button> : null}
+            {exerciseHistory.length > 10 ? <button onClick={loadMoreHistory}>Load more history</button> : null}
         </section>
     );
 }

@@ -94,7 +94,7 @@ export const RoutineHistory = () => {
                     </div>
                 ))
             }
-            {datesHistory.length > 0 ? <button onClick={loadMoreHistory}>Load more history</button> : null}
+            {datesHistory.length > 10 ? <button onClick={loadMoreHistory}>Load more history</button> : null}
         </section >
     );
 }
