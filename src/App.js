@@ -11,6 +11,7 @@ import { ExerciseHistory } from './features/ExerciseHistory/ExerciseHistory';
 import { Routines } from './features/Routines/Routines';
 import { RoutineHistory } from './features/RoutinesHistory/RoutineHistory';
 import { History } from './features/History/History';
+import { Workout } from './features/Workout/Workout';
 import { WorkoutHistory } from './features/WorkoutHistory/WorkoutHistory';
 
 //import actions
@@ -45,6 +46,7 @@ const App = () => {
           <main>
             <Switch>
               <Route exact path="/workout">
+                <Workout />
                 <WorkoutHistory />
               </Route>
               <Route exact path="/history">

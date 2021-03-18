@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import styles from './WorkoutHistory.module.css';
 
-import { dateConverter } from '../../utils/helpers';
-
+import { getWorkoutExercises } from '../Workout/WorkoutSlice';
 
 export const WorkoutHistory = () => {
     const activeRoutine = useSelector(state => state.routines.activeRoutine);
-    const [workoutExercises, setWorkoutExercises] = useState([]);
+    const workoutExercises = useSelector(state => state.workout.workoutExercises);
+    const dispatch = useDispatch();
 
 
     //get the exercises for currently selected Routine
@@ -20,12 +20,11 @@ export const WorkoutHistory = () => {
             const workoutExercisesResults = await fetch(fetchUrl);
             const jsonworkoutExercisesResults = await workoutExercisesResults.json();
 
-            setWorkoutExercises(jsonworkoutExercisesResults);
+            dispatch(getWorkoutExercises(jsonworkoutExercisesResults));
         };
 
         fetchWorkoutExercises();
-    }, [activeRoutine]);
-
+    }, [activeRoutine, dispatch]);
 
 
     return (
@@ -37,12 +36,12 @@ export const WorkoutHistory = () => {
 
             {
                 workoutExercises.map(exercise => (
-                    <div>
+                    <div key={exercise.id}>
                         <h3>{exercise.name}</h3>
                         <div className={styles.exerciseStatsContainer}>
                             <div>
-                                <p>Time under load: </p>
-                                <p>Negatives: </p>
+                                <p>Time under load: <span>{exercise.timeUnderLoad}</span></p>
+                                <p>Negatives: <span>{exercise.negatives}</span></p>
                             </div>
                             <button>Edit</button>
                         </div>
