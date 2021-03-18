@@ -1,25 +1,28 @@
 import React from 'react';
-//import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
+//import components
 import { Header } from './features/Header/Header';
 import { Exercises } from './features/Exercises/Exercises';
 import { ExerciseHistory } from './features/ExerciseHistory/ExerciseHistory';
 import { Routines } from './features/Routines/Routines';
 import { RoutineHistory } from './features/RoutinesHistory/RoutineHistory';
 import { History } from './features/History/History';
+import { WorkoutHistory } from './features/WorkoutHistory/WorkoutHistory';
 
+//import actions
 import { getExercisesList, changeActiveExercise } from './features/Exercises/ExercisesSlice';
 
-function App() {
+
+const App = () => {
   const dispatch = useDispatch();
 
-  /* Get exercises and set first index as active element when app mounts. 
+  /* Get exercises and set first index as active exercise when app mounts. 
      This needs to be done in the App component
-     because both exercises and routines pages depend on it.
+     because both Exercises and Routines/Edit components depend on it.
   */
   useEffect(() => {
     const getExercises = async () => {
@@ -41,6 +44,9 @@ function App() {
         <div className="mainContainer">
           <main>
             <Switch>
+              <Route exact path="/workout">
+                <WorkoutHistory />
+              </Route>
               <Route exact path="/history">
                 <History />
               </Route>

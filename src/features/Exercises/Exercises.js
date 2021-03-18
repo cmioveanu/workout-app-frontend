@@ -6,14 +6,6 @@ import { getExercisesList, changeActiveExercise, toggleEditExercisesShow } from 
 
 import { Edit } from './Edit';
 
-/*
-    # Create new exercise
-        - Add exercise in state and database
-    # History button
-        - onclick change (global) state for ExerciseHistory component 
-    # Edit button 
-        - will allow you to change the name of the exercise in the app and in the database
-*/
 
 
 export const Exercises = () => {
@@ -52,9 +44,8 @@ export const Exercises = () => {
             headers: {
                 "content-type": "application/json"
             }
-        })
-            .then(res => res.json())
-            .then(jsonRes => dispatch(getExercisesList(jsonRes)));
+        }).then(res => res.json())
+          .then(jsonRes => dispatch(getExercisesList(jsonRes)));
 
         event.preventDefault();
         setNewExerciseName("");

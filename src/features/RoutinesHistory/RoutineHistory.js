@@ -55,9 +55,6 @@ export const RoutineHistory = () => {
         return routineHistory.filter(exercise => exercise.date === workoutDate);
     }
 
-    console.log(routineHistory);
-    //remove dates that don't have any exercises corresponding
-
 
     return (
         <section className={styles.routineHistory}>
