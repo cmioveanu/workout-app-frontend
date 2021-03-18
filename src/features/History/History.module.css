@@ -1,0 +1,79 @@
+.routineHistory {
+    max-width: 600px;
+    width: 100%;
+    padding: 0 0 0 5%;
+    margin: 0 auto;
+}
+
+.routineHistoryTitle {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.routineHistory button {
+    background-color: #333333;
+    margin-top: 2rem;
+}
+
+.routineHistory button:hover {
+    background-color: #2fd5cd;
+}
+
+.description {
+    color: #2fd5cd;
+    font-style: italic;
+    margin-bottom: 2rem;
+}
+
+.historyName {
+    border-bottom: 1px solid #2fd5cd;
+    padding-bottom: 1rem;
+    margin-bottom: 12px;
+    font-size: 1.75rem;
+    margin-top: 0;
+}
+
+.historyDate {
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-top: 2.5rem;
+    margin-bottom: 5px;
+}
+
+
+
+/* history rows */
+.historyItem {
+    display: flex;
+    justify-content: space-between;
+}
+
+.historyItem p {
+    margin: 8px 0;
+}
+
+.historyItem .exercise {
+    font-weight: 500;
+    color: #2fd5cd;
+}
+
+.historyItem .timeAndNegative {
+    text-transform: uppercase;
+    color:#2fd5cd;
+    margin-left: 2rem;
+}
+
+.historyItem .timeAndNegative span {
+    color: #333333;
+    text-transform: lowercase;
+}
+
+.exerciseStats {
+    display: flex;
+    justify-content: space-between;
+}
+
+.spanPadding {
+    padding-left: 9px;
+}

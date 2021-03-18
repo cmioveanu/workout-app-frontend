@@ -10,6 +10,7 @@ import { Exercises } from './features/Exercises/Exercises';
 import { ExerciseHistory } from './features/ExerciseHistory/ExerciseHistory';
 import { Routines } from './features/Routines/Routines';
 import { RoutineHistory } from './features/RoutinesHistory/RoutineHistory';
+import { History } from './features/History/History';
 
 import { getExercisesList, changeActiveExercise } from './features/Exercises/ExercisesSlice';
 
@@ -40,6 +41,9 @@ function App() {
         <div className="mainContainer">
           <main>
             <Switch>
+              <Route exact path="/history">
+                <History />
+              </Route>
               <Route exact path="/exercises">
                 <Exercises />
                 <ExerciseHistory />
