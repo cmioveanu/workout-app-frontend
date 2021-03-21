@@ -35,14 +35,11 @@ export const WorkoutHistory = () => {
     }, [activeRoutine, dispatch]);
 
 
-    
+
 
 
     return (
         <section className={styles.workoutHistory}>
-
-            
-
             {
                 workoutExercises.map(exercise => (
                     <div key={exercise.id}>
@@ -58,7 +55,7 @@ export const WorkoutHistory = () => {
                 ))
             }
 
-
+            <button id={styles.completeButton}>Compelte workout</button>
         </section >
     );
 }

@@ -22,10 +22,7 @@
 }
 
 
-
-
 /* exercise rows */
-
 .exerciseStatsContainer {
     display: flex;
     justify-content: space-between;
@@ -43,10 +40,20 @@
     text-transform: lowercase;
 }
 
-
-
-
-
 .spanPadding {
     padding-left: 9px;
+}
+
+
+
+
+#completeButton {
+    margin-top: 1.5rem;
+    font-size: 1.5rem;
+    padding: 1rem;
+    background-color: #2fd5cd;
+}
+
+#completeButton:hover {
+    background-color: #333;
 }
