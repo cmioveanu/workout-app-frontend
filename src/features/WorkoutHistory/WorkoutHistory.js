@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './WorkoutHistory.module.css';
 
@@ -32,7 +32,7 @@ export const WorkoutHistory = () => {
 
             {/* Display the activateRoutine from global state into the section heading */}
             <h2 className={styles.workoutHistoryTitle}>{activeRoutine.name}</h2>
-            <p className={styles.description}>Click routine history to see past entries</p>
+            <p className={styles.description}>Select a different routine above to change workout</p>
 
             {
                 workoutExercises.map(exercise => (

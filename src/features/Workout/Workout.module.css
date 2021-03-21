@@ -1,6 +1,9 @@
 .workoutHistory {
     width: 50%;
     padding: 0 5% 0 0;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
 }
 
 
@@ -10,5 +13,94 @@
     width: 300px;
     height: 300px;
     margin: 0 auto;
-    text-align: center;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.timeUnderLoad {
+    display: block;
+    font-size: 5rem;
+    margin-top: 25%;
+}
+
+.timeUnderLoad span {
+    font-size: 2rem;
+}
+
+
+/* Buttons */
+#exerciseSelector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#exerciseSelector button {
+    background: none; 
+    color: #2fd5cd;
+    font-weight: normal;
+    font-size: 2rem;
+}
+
+.buttonsContainer {
+    margin-top: 1rem;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.buttonsContainer div {
+    width: 100%;
+}
+
+
+.buttonsContainer button {
+    margin: 5px;
+    padding: 0.5rem 1rem;
+    background-color: #333;
+}
+
+.buttonsContainer button:hover {
+    margin: 5px;
+    background-color: #2fd5cd;
+}
+
+.buttonsContainer input {
+    max-width: 50px;
+    border-radius: 0;
+    border: 1px solid #2fd5cd;
+    padding: 7px;
+    margin-left: 5px;
+}
+
+.buttonsContainer input:focus {
+    border-color: #333;
+    outline: none;
+}
+
+.negatives button {
+    background-color: #2fd5cd;
+}
+
+.negatives button:hover {
+    background-color: #333;
+}
+
+
+/* conditional id for start/stop button color*/
+#startSetDark {
+    background-color: #333;
+}
+
+#startSetDark:hover {
+    background-color: #2fd5cd;
+}
+
+#startSetLight {
+    background-color: #2fd5cd;
+}
+
+#startSetLight:hover {
+    background-color: #333;
 }

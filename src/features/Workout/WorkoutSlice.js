@@ -29,7 +29,7 @@ export const workoutSlice = createSlice({
             const exerciseName = action.payload.name;
             
             const indexOfExercise = state.workoutExercises.findIndex(exercise => exercise.name === exerciseName);
-            state.workoutExercises[indexOfExercise].negatives = negatives;
+            state.workoutExercises[indexOfExercise].negatives += negatives;
         }
     }
 });
