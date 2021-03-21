@@ -1,7 +1,7 @@
 //modal that gets displayed when clicking "Edit" button and gets passed an id prop for an Routine
 //this modal can make a PUT request to edit an existing Routine
 //or a DELETE request to delete an Routine
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './Edit.module.css';
 
@@ -15,8 +15,18 @@ export const Edit = props => {
     const exercises = useSelector(state => state.exercises.exercisesList);
 
     const [newRoutineName, setNewRoutineName] = useState("");
-    const [selectedExercise, setSelectedExercise] = useState(exercises[0].id);
+    const [selectedExercise, setSelectedExercise] = useState(null);
+   
 
+    //update state when exercises are loaded in the app
+    useEffect(() => {
+        if(exercises.length > 0) {
+            setSelectedExercise();
+        }
+    }, [exercises.length]);
+
+
+    //only show this component when the edit button was pressed
     if (!showModal) {
         return null;
     }

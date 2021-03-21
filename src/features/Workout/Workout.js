@@ -4,15 +4,15 @@ import styles from './Workout.module.css';
 
 import { changeTUL, changeNegatives } from './WorkoutSlice';
 
+
 export const Workout = () => {
-    //const activeRoutine = useSelector(state => state.routines.activeRoutine);
     const workoutExercises = useSelector(state => state.workout.workoutExercises);
     const dispatch = useDispatch();
 
 
     //selected exercise
     const [exerciseIndex, setExerciseIndex] = useState(0);
-    const [selectedExercise, setSelectedExercise] = useState({name: "Pullups"});
+    const [selectedExercise, setSelectedExercise] = useState({ name: "" });
     const [negatives, setNegatives] = useState(null);
 
 
@@ -24,10 +24,10 @@ export const Workout = () => {
 
 
     useEffect(() => {
-        if(workoutExercises.length > 0) {
+        if (workoutExercises.length > 0) {
             setSelectedExercise(workoutExercises[exerciseIndex]);
         }
-    });
+    }, [workoutExercises, exerciseIndex]);
 
 
     //initiate or clear the timer based on active status

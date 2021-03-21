@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './Routines.module.css';
 
-import { getRoutinesList, getRoutinesExercisesList, changeActiveRoutine, toggleEditRoutinesShow } from './RoutinesSlice';
+import { getRoutinesList, changeActiveRoutine, toggleEditRoutinesShow } from './RoutinesSlice';
 
 import { Edit } from './Edit';
 
@@ -17,33 +17,6 @@ export const Routines = () => {
 
     const [newRoutineName, setNewRoutineName] = useState("");
     const [routineToEdit, setRoutineToEdit] = useState(null);
-
-
-    //get Routines and set first index as active element when component mounts
-    useEffect(() => {
-        const getRoutines = async () => {
-            const routines = await fetch("http://localhost:8080/myRoutines");
-            const jsonRoutines = await routines.json();
-
-            dispatch(getRoutinesList(jsonRoutines));
-            dispatch(changeActiveRoutine(jsonRoutines[0]));
-        };
-
-        getRoutines();
-    }, [dispatch]);
-
-
-    //get the exercises that belong to routines
-    useEffect(() => {
-        const getExercisesRoutines = async () => {
-            const exercisesRoutines = await fetch("http://localhost:8080/myRoutines/exercises");
-            const jsonExercisesRoutines = await exercisesRoutines.json();
-
-            dispatch(getRoutinesExercisesList(jsonExercisesRoutines));
-        };
-
-        getExercisesRoutines();
-    }, [dispatch])
 
 
     //change new Routine name when typing

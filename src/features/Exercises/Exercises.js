@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './Exercises.module.css';
 
@@ -7,27 +7,12 @@ import { getExercisesList, changeActiveExercise, toggleEditExercisesShow } from 
 import { Edit } from './Edit';
 
 
-
 export const Exercises = () => {
     const dispatch = useDispatch();
 
     const exercises = useSelector(state => state.exercises.exercisesList);
     const [newExerciseName, setNewExerciseName] = useState("");
     const [exerciseToEdit, setExerciseToEdit] = useState(null);
-
-
-    //get exercises and set first index as active element when component mounts
-    useEffect(() => {
-        const getExercises = async () => {
-            const exercises = await fetch("http://localhost:8080/myExercises");
-            const jsonExercises = await exercises.json();
-
-            dispatch(getExercisesList(jsonExercises));
-            dispatch(changeActiveExercise(jsonExercises[0]));
-        };
-
-        getExercises();
-    }, [dispatch]);
 
 
     //change new exercise name when typing
