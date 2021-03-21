@@ -3,9 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import styles from './Workout.module.css';
 
 import { changeTUL, changeNegatives } from './WorkoutSlice';
+import { changeActiveRoutine } from '../Routines/RoutinesSlice';
 
 
 export const Workout = () => {
+    const routinesList = useSelector(state => state.routines.routinesList);
     const workoutExercises = useSelector(state => state.workout.workoutExercises);
     const dispatch = useDispatch();
 
@@ -130,6 +132,12 @@ export const Workout = () => {
     }
 
 
+    //change active routine when selecting a different routine
+    const handleRoutineChange = (newRoutine) => {
+        dispatch(changeActiveRoutine(newRoutine));
+    }
+
+
     return (
         <section className={styles.workoutHistory}>
 
@@ -138,6 +146,17 @@ export const Workout = () => {
                 <p>Total workout time:</p>
                 <time>{totalWorkTime}</time>
             </div>
+
+             {/* Display the activateRoutine from global state into the section heading */}
+             <h2>
+                <select className={styles.workoutHistoryTitle}>
+                    {routinesList.map(routine => (
+                        <option key={routine.id} value={routine.name} onClick={() => handleRoutineChange(routine)}>{routine.name}</option>
+                    ))}
+                </select>
+            </h2>
+            <p className={styles.description}>Select a different routine above to change the workout</p>
+            
             <div className={styles.buttonsContainer}>
                 <div id={styles.exerciseSelector}>
                     <button onClick={indexIncrease}>{"<"}</button>

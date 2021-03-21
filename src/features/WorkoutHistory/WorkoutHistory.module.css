@@ -4,13 +4,6 @@
     border-left: 2px solid #2fd5cd;
 }
 
-.workoutHistoryTitle {
-    font-size: 2.5rem;
-    margin: 0;
-    font-weight: bold;
-    appearance: none;
-    border: none;
-}
 
 .workoutHistory h3 {
     font-size: 1.5rem;
@@ -26,12 +19,6 @@
 
 .workoutHistory button:hover {
     background-color: #2fd5cd;
-}
-
-.description {
-    color: #2fd5cd;
-    font-style: italic;
-    margin-bottom: 2rem;
 }
 
 

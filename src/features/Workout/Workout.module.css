@@ -7,6 +7,22 @@
 }
 
 
+.workoutHistoryTitle {
+    font-size: 2rem;
+    margin: 0;
+    font-weight: bold;
+    appearance: none;
+    border: none;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.description {
+    color: #2fd5cd;
+    font-style: italic;
+    margin-top: 0;
+}
+
 .timerContainer {
     border: 2px solid #2fd5cd;
     border-radius: 50%;
@@ -44,12 +60,10 @@
 }
 
 .buttonsContainer {
-    margin-top: 1rem;
     display: flex;
     flex-flow: column;
     align-items: center;
 }
-
 
 .buttonsContainer button {
     margin: 5px;
