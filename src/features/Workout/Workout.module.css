@@ -50,10 +50,6 @@
     align-items: center;
 }
 
-.buttonsContainer div {
-    width: 100%;
-}
-
 
 .buttonsContainer button {
     margin: 5px;
@@ -71,7 +67,7 @@
     border-radius: 0;
     border: 1px solid #2fd5cd;
     padding: 7px;
-    margin-left: 5px;
+    margin: 5px;
 }
 
 .buttonsContainer input:focus {

@@ -20,7 +20,14 @@ export const WorkoutHistory = () => {
             const workoutExercisesResults = await fetch(fetchUrl);
             const jsonworkoutExercisesResults = await workoutExercisesResults.json();
 
-            dispatch(getWorkoutExercises(jsonworkoutExercisesResults));
+            const exercisesWithStats = jsonworkoutExercisesResults.map(exercise => ({
+                name: exercise.name,
+                id: exercise.exercises_routines_id,
+                timeUnderLoad: 0,
+                negatives: 0
+            }));
+
+            dispatch(getWorkoutExercises(exercisesWithStats));
         };
 
         fetchWorkoutExercises();

@@ -5,15 +5,15 @@ import styles from './Workout.module.css';
 import { changeTUL, changeNegatives } from './WorkoutSlice';
 
 export const Workout = () => {
-    const activeRoutine = useSelector(state => state.routines.activeRoutine);
+    //const activeRoutine = useSelector(state => state.routines.activeRoutine);
     const workoutExercises = useSelector(state => state.workout.workoutExercises);
     const dispatch = useDispatch();
 
 
     //selected exercise
     const [exerciseIndex, setExerciseIndex] = useState(0);
-    const [selectedExercise, setSelectedExercise] = useState(workoutExercises[exerciseIndex]);
-    const [negatives, setNegatives] = useState(1);
+    const [selectedExercise, setSelectedExercise] = useState({name: "Pullups"});
+    const [negatives, setNegatives] = useState(null);
 
 
     //state for timers
@@ -21,6 +21,13 @@ export const Workout = () => {
     const [timerActive, setTimerActive] = useState(false);
     const [totalWorkTime, setTotalWorkTime] = useState(0);
     const [totalTimerActive, setTotalTimerActive] = useState(0);
+
+
+    useEffect(() => {
+        if(workoutExercises.length > 0) {
+            setSelectedExercise(workoutExercises[exerciseIndex]);
+        }
+    });
 
 
     //initiate or clear the timer based on active status
@@ -101,19 +108,19 @@ export const Workout = () => {
 
     //increment selected exercise index
     const indexIncrease = () => {
-        if(exerciseIndex < workoutExercises.length - 1) {
+        if (exerciseIndex < workoutExercises.length - 1) {
             setExerciseIndex(index => index + 1);
         } else {
             setExerciseIndex(0);
         }
-        
+
         setSelectedExercise(workoutExercises[exerciseIndex]);
     }
 
 
     //decrement selected exercise index
     const indexDecrease = () => {
-        if(exerciseIndex === 0) {
+        if (exerciseIndex === 0) {
             setExerciseIndex(workoutExercises.length - 1);
         } else {
             setExerciseIndex(index => index - 1);
@@ -135,7 +142,7 @@ export const Workout = () => {
                 <div id={styles.exerciseSelector}>
                     <button onClick={indexIncrease}>{"<"}</button>
                     <h2>{selectedExercise.name}</h2>
-                    <button onClick = {indexDecrease}>{">"}</button>
+                    <button onClick={indexDecrease}>{">"}</button>
                 </div>
                 <div>
                     <button id={timerActive ? styles.startSetLight : styles.startSetDark} onClick={stopStartTimer}>{timerActive === false ? "Start set" : "Record set"}</button>
@@ -143,7 +150,7 @@ export const Workout = () => {
                 </div>
                 <div className={styles.negatives}>
                     <button onClick={addNegatives}>Add negatives</button>
-                    <input type="text" value={negatives} onChange={handleNegativesChange} />
+                    <input type="text" onChange={handleNegativesChange} />
                 </div>
             </div>
 

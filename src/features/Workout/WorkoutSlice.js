@@ -7,15 +7,7 @@ export const workoutSlice = createSlice({
     },
     reducers: {
         getWorkoutExercises: (state, action) => {
-            const exercisesArray = action.payload;
-            
-            const exercisesWithStats = exercisesArray.map(exercise => ({
-                name: exercise.name,
-                id: exercise.exercises_routines_id,
-                timeUnderLoad: 0,
-                negatives: 0
-            }));
-            state.workoutExercises = exercisesWithStats;
+            state.workoutExercises = action.payload;
         },
         changeTUL: (state, action) => {
             const timeUnderLoad = action.payload.timeUnderLoad;
