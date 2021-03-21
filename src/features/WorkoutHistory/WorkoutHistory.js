@@ -2,12 +2,13 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './WorkoutHistory.module.css';
 
-import { getWorkoutExercises } from '../Workout/WorkoutSlice';
+import { getWorkoutExercises, stopTotalTime } from '../Workout/WorkoutSlice';
 
 
 export const WorkoutHistory = () => {
     const activeRoutine = useSelector(state => state.routines.activeRoutine);
     const workoutExercises = useSelector(state => state.workout.workoutExercises);
+    const totalWorkTime = useSelector(state => state.workout.totalTime);
     const dispatch = useDispatch();
 
 
@@ -35,7 +36,28 @@ export const WorkoutHistory = () => {
     }, [activeRoutine, dispatch]);
 
 
+    //record the workout in the database
+    const recordWorkout = () => {
+        dispatch(stopTotalTime(0));
 
+        const workoutDetails = {
+            totalWorkoutTime: totalWorkTime,
+            exercises: workoutExercises,
+        }
+
+        console.log(workoutDetails);
+        
+        const fetchUrl = "http://localhost:8080/myWorkout/";
+        const fetchOptions = {
+            method: 'POST',
+            body: JSON.stringify(workoutDetails),
+            headers: {
+                "content-type": "application/json"
+            }
+        };
+
+        fetch(fetchUrl, fetchOptions);
+    }
 
 
     return (
@@ -55,7 +77,7 @@ export const WorkoutHistory = () => {
                 ))
             }
 
-            <button id={styles.completeButton}>Compelte workout</button>
+            <button id={styles.completeButton} onClick={recordWorkout}>Finish workout</button>
         </section >
-    );
+    );  
 }

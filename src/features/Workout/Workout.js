@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './Workout.module.css';
 
-import { changeTUL, changeNegatives } from './WorkoutSlice';
+import { changeTUL, changeNegatives, startTotalTime, updateTotalTime } from './WorkoutSlice';
 import { changeActiveRoutine } from '../Routines/RoutinesSlice';
 
 
@@ -10,6 +10,9 @@ export const Workout = () => {
     const routinesList = useSelector(state => state.routines.routinesList);
     const workoutExercises = useSelector(state => state.workout.workoutExercises);
     const dispatch = useDispatch();
+
+    const totalWorkTime = useSelector(state => state.workout.totalTime);
+    const totalTimerActive = useSelector(state => state.workout.totalTimerActive);
 
 
     //selected exercise
@@ -21,8 +24,8 @@ export const Workout = () => {
     //state for timers
     const [timeUnderLoad, setTimeUnderLoad] = useState(0);
     const [timerActive, setTimerActive] = useState(false);
-    const [totalWorkTime, setTotalWorkTime] = useState(0);
-    const [totalTimerActive, setTotalTimerActive] = useState(0);
+    //const [totalWorkTime, setTotalWorkTime] = useState(0);
+    //const [totalTimerActive, setTotalTimerActive] = useState(0);
 
 
     useEffect(() => {
@@ -52,12 +55,12 @@ export const Workout = () => {
 
         if (totalTimerActive) {
             totalTimer = setInterval(() => {
-                setTotalWorkTime(value => value + 1);
+                dispatch(updateTotalTime());
             }, 1000);
         }
 
         return () => clearInterval(totalTimer);
-    }, [totalTimerActive]);
+    }, [dispatch, totalTimerActive]);
 
 
     /* start timer if not active;
@@ -65,7 +68,7 @@ export const Workout = () => {
     const stopStartTimer = () => {
         //if total workout timer not active yet, start it for the workout
         if (!totalTimerActive) {
-            setTotalTimerActive(true);
+            dispatch(startTotalTime());
         }
 
         //if exercise timer inactive, start it. If active, record the value and reset exercise timer
