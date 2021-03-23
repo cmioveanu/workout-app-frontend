@@ -6,6 +6,7 @@ export const workoutSlice = createSlice({
         workoutExercises: [],
         totalTime: 0,
         totalTimerActive: false,
+        showEditWorkout: false
     },
     reducers: {
         getWorkoutExercises: (state, action) => {
@@ -18,12 +19,19 @@ export const workoutSlice = createSlice({
             const indexOfExercise = state.workoutExercises.findIndex(exercise => exercise.name === exerciseName);
             state.workoutExercises[indexOfExercise].timeUnderLoad = timeUnderLoad;
         },
-        changeNegatives: (state, action) => {
-            const negatives = action.payload.negatives;
+        addNegatives: (state, action) => {
+            const negatives = parseInt(action.payload.negatives);
             const exerciseName = action.payload.name;
 
             const indexOfExercise = state.workoutExercises.findIndex(exercise => exercise.name === exerciseName);
             state.workoutExercises[indexOfExercise].negatives += negatives;
+        },
+        changeNegatives: (state, action) => {
+            const negatives = parseInt(action.payload.negatives);
+            const exerciseName = action.payload.name;
+            
+            const indexOfExercise = state.workoutExercises.findIndex(exercise => exercise.name === exerciseName);
+            state.workoutExercises[indexOfExercise].negatives = negatives;
         },
         startTotalTime: (state) => {
             state.totalTimerActive = true;
@@ -33,10 +41,13 @@ export const workoutSlice = createSlice({
         },
         updateTotalTime: (state) => {
             state.totalTime += 1;
-        }
+        },
+        toggleShowEditWorkout: (state) => {
+            state.showEditWorkout = !state.showEditWorkout;
+          }
     }
 });
 
-export const { getWorkoutExercises, changeTUL, changeNegatives,
-    startTotalTime, stopTotalTime, updateTotalTime } = workoutSlice.actions;
+export const { getWorkoutExercises, changeTUL, changeNegatives, addNegatives,
+    startTotalTime, stopTotalTime, updateTotalTime, toggleShowEditWorkout } = workoutSlice.actions;
 export default workoutSlice.reducer;

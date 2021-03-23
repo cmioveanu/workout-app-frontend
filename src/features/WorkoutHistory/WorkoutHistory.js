@@ -1,14 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './WorkoutHistory.module.css';
 
-import { getWorkoutExercises, stopTotalTime } from '../Workout/WorkoutSlice';
-
+import { getWorkoutExercises, stopTotalTime, toggleShowEditWorkout } from '../Workout/WorkoutSlice';
+import {Edit} from './Edit';
 
 export const WorkoutHistory = () => {
     const activeRoutine = useSelector(state => state.routines.activeRoutine);
     const workoutExercises = useSelector(state => state.workout.workoutExercises);
     const totalWorkTime = useSelector(state => state.workout.totalTime);
+    const [exerciseToEdit, setExerciseToEdit] = useState(null);
     const dispatch = useDispatch();
 
 
@@ -46,7 +47,7 @@ export const WorkoutHistory = () => {
         }
 
         console.log(workoutDetails);
-        
+
         const fetchUrl = "http://localhost:8080/myWorkout/";
         const fetchOptions = {
             method: 'POST',
@@ -57,6 +58,13 @@ export const WorkoutHistory = () => {
         };
 
         fetch(fetchUrl, fetchOptions);
+    }
+
+
+    //open edit modal
+    const handleEditClick = (exercise) => {
+        setExerciseToEdit(exercise);
+        dispatch(toggleShowEditWorkout());
     }
 
 
@@ -71,13 +79,17 @@ export const WorkoutHistory = () => {
                                 <p>Time under load: <span>{exercise.timeUnderLoad}</span></p>
                                 <p>Negatives: <span>{exercise.negatives}</span></p>
                             </div>
-                            <button>Edit</button>
+                            <button onClick={() => handleEditClick(exercise)}>Edit</button>
                         </div>
                     </div>
                 ))
             }
 
-            <button id={styles.completeButton} onClick={recordWorkout}>Finish workout</button>
+            <button id={styles.completeButton} onClick={recordWorkout}>Record workout</button>
+
+            {/* Edid component as modal, with the ID of the Routine
+                that needs to be edited/deleted in the database */}
+            <Edit exerciseToEdit={exerciseToEdit} />
         </section >
-    );  
+    );
 }

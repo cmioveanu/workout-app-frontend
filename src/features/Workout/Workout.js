@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './Workout.module.css';
 
-import { changeTUL, changeNegatives, startTotalTime, updateTotalTime } from './WorkoutSlice';
+import { changeTUL, addNegatives, startTotalTime, updateTotalTime } from './WorkoutSlice';
 import { changeActiveRoutine } from '../Routines/RoutinesSlice';
 
 
@@ -107,7 +107,7 @@ export const Workout = () => {
             name: selectedExercise.name,
             negatives: negatives
         }
-        dispatch(changeNegatives(values));
+        dispatch(addNegatives(values));
     }
 
 

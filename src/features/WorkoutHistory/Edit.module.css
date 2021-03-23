@@ -1,0 +1,79 @@
+.modal {
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background:rgba(0,0,0,0.7);
+    z-index:1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal {
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background:rgba(0,0,0,0.7);
+    z-index:1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.elementsBackground {
+    background-color: white;
+    padding: 2.5%;
+    display: flex;
+    flex-flow: column;
+}
+
+.elementsBackground h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    margin-top: 0;
+}
+
+
+
+/* Buttons and input */
+
+.buttonsContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.modal button {
+    margin-top: 1rem;
+}
+
+.modal .editButton {
+    background-color: #2fd5cd;
+}
+
+.modal .editButton:hover {
+    background-color: #333;
+}
+
+.modal input {
+    margin-top: 8px;
+    margin-bottom: 12px;
+    padding: 8px;
+    border-radius: 0;
+    border: 1px solid #2fd5cd;
+    min-width: 250px;
+}
+
+.modal input:focus {
+    outline: none;
+    border-color: #333333;
+}
+
+.modal label {
+    color: #2fd5cd;
+    margin-top: 1rem;
+}
