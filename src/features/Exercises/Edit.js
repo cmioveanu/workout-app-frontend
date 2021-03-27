@@ -19,7 +19,7 @@ export const Edit = props => {
 
     //send a request to edit in database and close modal
     const handleDoneClick = async () => {
-        const baseUrl = "http://localhost:8080/myExercises/";
+        const baseUrl = "/myExercises/";
         const fetchUrl = baseUrl + props.exerciseToEdit.id;
 
         const fetchOptions = {
@@ -42,7 +42,7 @@ export const Edit = props => {
 
     //send a request to delete from database and close modal
     const handleDeleteClick = async () => {
-        const baseUrl = "http://localhost:8080/myExercises/";
+        const baseUrl = "/myExercises/";
         const fetchUrl = baseUrl + props.exerciseToEdit.id;
 
         const fetchOptions = {

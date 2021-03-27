@@ -16,7 +16,7 @@ export const WorkoutHistory = () => {
     //get the exercises for currently selected Routine
     useEffect(() => {
         const fetchWorkoutExercises = async () => {
-            const baseUrl = "http://localhost:8080/myWorkout/";
+            const baseUrl = "/myWorkout/";
 
             const fetchUrl = baseUrl + activeRoutine.id;
 
@@ -48,7 +48,7 @@ export const WorkoutHistory = () => {
 
         console.log(workoutDetails);
 
-        const fetchUrl = "http://localhost:8080/myWorkout/";
+        const fetchUrl = "/myWorkout/";
         const fetchOptions = {
             method: 'POST',
             body: JSON.stringify(workoutDetails),

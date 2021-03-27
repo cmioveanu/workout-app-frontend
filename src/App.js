@@ -29,7 +29,7 @@ const App = () => {
   //get Routines and set first index as active routine when component mounts
   useEffect(() => {
     const getRoutines = async () => {
-      const routines = await fetch("http://localhost:8080/myRoutines");
+      const routines = await fetch("/myRoutines");
       const jsonRoutines = await routines.json();
 
       dispatch(getRoutinesList(jsonRoutines));
@@ -43,7 +43,7 @@ const App = () => {
   //get the exercises that belong to routines
   useEffect(() => {
     const getExercisesRoutines = async () => {
-      const exercisesRoutines = await fetch("http://localhost:8080/myRoutines/exercises");
+      const exercisesRoutines = await fetch("/myRoutines/exercises");
       const jsonExercisesRoutines = await exercisesRoutines.json();
 
       dispatch(getRoutinesExercisesList(jsonExercisesRoutines));
@@ -56,7 +56,7 @@ const App = () => {
   //get exercises and set first index as active element when component mounts
   useEffect(() => {
     const getExercises = async () => {
-      const exercises = await fetch("http://localhost:8080/myExercises");
+      const exercises = await fetch("/myExercises");
       const jsonExercises = await exercises.json();
 
       dispatch(getExercisesList(jsonExercises));
