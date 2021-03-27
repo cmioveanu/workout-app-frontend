@@ -14,7 +14,7 @@ export const Register = () => {
                 <input id="password" type="password"></input>
                 <label htmlFor="passwordConfirm">Confirm Password:</label>
                 <input id="passwordConfirm" type="password"></input>
-                <button>Login</button>
+                <button>Register</button>
             </form>
             <p>Already have an account? <Link to="/login">Log in here.</Link></p>
         </section >
