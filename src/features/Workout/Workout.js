@@ -102,7 +102,7 @@ export const Workout = () => {
 
 
     //add negatives to the selected exercise
-    const addNegatives = () => {
+    const addMoreNegatives = () => {
         const values = {
             name: selectedExercise.name,
             negatives: negatives
@@ -137,6 +137,7 @@ export const Workout = () => {
 
     //change active routine when selecting a different routine
     const handleRoutineChange = (newRoutine) => {
+        setExerciseIndex(0);
         dispatch(changeActiveRoutine(newRoutine));
     }
 
@@ -152,7 +153,7 @@ export const Workout = () => {
 
              {/* Display the activateRoutine from global state into the section heading */}
              <h2>
-                <select className={styles.workoutHistoryTitle}>
+                <select className={styles.workoutTitle}>
                     {routinesList.map(routine => (
                         <option key={routine.id} value={routine.name} onClick={() => handleRoutineChange(routine)}>{routine.name}</option>
                     ))}
@@ -171,7 +172,7 @@ export const Workout = () => {
                     <button onClick={resetTimer}>Reset set</button>
                 </div>
                 <div className={styles.negatives}>
-                    <button onClick={addNegatives}>Add negatives</button>
+                    <button onClick={addMoreNegatives}>Add negatives</button>
                     <input type="text" onChange={handleNegativesChange} />
                 </div>
             </div>

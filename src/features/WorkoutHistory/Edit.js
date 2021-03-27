@@ -37,7 +37,7 @@ export const Edit = props => {
         }));
 
         dispatch(toggleShowEditWorkout());
-    }
+    };
 
 
     return (
