@@ -30,12 +30,17 @@
 }
 
 
-.loginContainer button {
+.loginContainer .submitButton {
     background-color: #333333;
+    border: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
     width: 100%;
 }
 
-.loginContainer button:hover {
+.loginContainer .submitButton:hover {
     background-color: #2fd5cd;
 }
 
