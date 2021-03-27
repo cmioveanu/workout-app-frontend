@@ -13,9 +13,11 @@ import { RoutineHistory } from './features/RoutinesHistory/RoutineHistory';
 import { History } from './features/History/History';
 import { Workout } from './features/Workout/Workout';
 import { WorkoutHistory } from './features/WorkoutHistory/WorkoutHistory';
+import { Login } from './features/Login/Login';
+import { Register } from './features/Login/Register';
 
 
-//import actions
+//import action creators
 import { getRoutinesList, getRoutinesExercisesList, changeActiveRoutine } from './features/Routines/RoutinesSlice';
 import { getExercisesList, changeActiveExercise } from './features/Exercises/ExercisesSlice';
 
@@ -86,6 +88,12 @@ const App = () => {
               <Route exact path="/routines">
                 <Routines />
                 <RoutineHistory />
+              </Route>
+              <Route exact path="/login">
+                <Login />
+              </Route>
+              <Route exact path="/register">
+                <Register />
               </Route>
             </Switch>
           </main>
