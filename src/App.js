@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { useEffect, Fragment } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 //import components
 import { Header } from './features/Header/Header';
@@ -24,7 +24,7 @@ import { getExercisesList, changeActiveExercise } from './features/Exercises/Exe
 
 const App = () => {
   const dispatch = useDispatch();
-
+  const loggedIn = useSelector(state => state.login.loggedIn);
 
   //get Routines and set first index as active routine when component mounts
   useEffect(() => {
@@ -75,23 +75,40 @@ const App = () => {
           <main>
             <Switch>
               <Route exact path="/workout">
-                <Workout />
-                <WorkoutHistory />
+                {!loggedIn ? <Redirect to="/login" /> :
+                  <Fragment>
+                    <Workout />
+                    <WorkoutHistory />
+                  </Fragment>
+                }
               </Route>
+
               <Route exact path="/history">
-                <History />
+                {!loggedIn ? <Redirect to="/login" /> : <History />}
               </Route>
+
               <Route exact path="/exercises">
-                <Exercises />
-                <ExerciseHistory />
+                {!loggedIn ? <Redirect to="/login" /> :
+                  <Fragment>
+                    <Exercises />
+                    <ExerciseHistory />
+                  </Fragment>
+                }
               </Route>
+
               <Route exact path="/routines">
-                <Routines />
-                <RoutineHistory />
+                {!loggedIn ? <Redirect to="/login" /> :
+                  <Fragment>
+                    <Routines />
+                    <RoutineHistory />
+                  </Fragment>
+                }
               </Route>
+
               <Route exact path="/login">
                 <Login />
               </Route>
+
               <Route exact path="/register">
                 <Register />
               </Route>

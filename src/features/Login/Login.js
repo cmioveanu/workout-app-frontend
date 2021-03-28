@@ -1,12 +1,16 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styles from './Login.module.css';
 import { Link } from 'react-router-dom';
+
+import { logIn } from './LoginSlice';
 
 
 export const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    
+    const dispatch = useDispatch();
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -20,6 +24,10 @@ export const Login = () => {
                 username: username,
                 password: password
             })
+        }).then(res => {
+            if(res.status === 200) {
+                dispatch(logIn());
+            }
         });
     }
 
