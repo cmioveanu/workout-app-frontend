@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styles from './Login.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { logIn } from './LoginSlice';
 
@@ -9,9 +9,12 @@ import { logIn } from './LoginSlice';
 export const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+
     const dispatch = useDispatch();
+    const history = useHistory();
 
 
+    //login and if successful, redirect to workout page
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -27,6 +30,7 @@ export const Login = () => {
         }).then(res => {
             if(res.status === 200) {
                 dispatch(logIn());
+                history.push('/workout');
             }
         });
     }
