@@ -17,7 +17,7 @@ export const Workout = () => {
 
     //selected exercise
     const [exerciseIndex, setExerciseIndex] = useState(0);
-    const [selectedExercise, setSelectedExercise] = useState({ name: "" });
+    const [selectedExercise, setSelectedExercise] = useState({ name: "No exercise available yet." });
     const [negatives, setNegatives] = useState(null);
 
 
@@ -144,40 +144,49 @@ export const Workout = () => {
 
     return (
         <section className={styles.workoutHistory}>
-
             <div className={styles.timerContainer}>
                 <time className={styles.timeUnderLoad}>{timeUnderLoad}<span>s</span></time>
                 <p>Total workout time:</p>
                 <time>{totalWorkTime}</time>
             </div>
 
-             {/* Display the activateRoutine from global state into the section heading */}
-             <h2>
+            {/* Display the activateRoutine from global state into the section heading */}
+            <h2>
+                {routinesList.length === 0 ? 'No workouts available yet.' : null}
                 <select className={styles.workoutTitle}>
                     {routinesList.map(routine => (
                         <option key={routine.id} value={routine.name} onClick={() => handleRoutineChange(routine)}>{routine.name}</option>
                     ))}
                 </select>
             </h2>
-            <p className={styles.description}>Select a different routine above to change the workout</p>
-            
-            <div className={styles.buttonsContainer}>
-                <div id={styles.exerciseSelector}>
-                    <button onClick={indexIncrease}>{"<"}</button>
-                    <h2>{selectedExercise.name}</h2>
-                    <button onClick={indexDecrease}>{">"}</button>
-                </div>
-                <div>
-                    <button id={timerActive ? styles.startSetLight : styles.startSetDark} onClick={stopStartTimer}>{timerActive === false ? "Start set" : "Record set"}</button>
-                    <button onClick={resetTimer}>Reset set</button>
-                </div>
-                <div className={styles.negatives}>
-                    <button onClick={addMoreNegatives}>Add negatives</button>
-                    <input type="text" onChange={handleNegativesChange} />
-                </div>
-            </div>
+            <p className={styles.description}>
+                {
+                    routinesList.length === 0 ? 'Create a routine to start working out' :
+                        'Select a different routine above to change the workout'
+                }
+            </p>
 
 
+            {/* Display buttons for active exercise and timer controls if routines exist. */}
+            {
+                routinesList.length === 0 ? null : <div className={styles.buttonsContainer}>
+                    <div id={styles.exerciseSelector}>
+                        <button onClick={indexIncrease}>{"<"}</button>
+                        <h2>{selectedExercise.name}</h2>
+                        <button onClick={indexDecrease}>{">"}</button>
+                    </div>
+
+                    <div>
+                        <button id={timerActive ? styles.startSetLight : styles.startSetDark} onClick={stopStartTimer}>{timerActive === false ? "Start set" : "Record set"}</button>
+                        <button onClick={resetTimer}>Reset set</button>
+                    </div>
+
+                    <div className={styles.negatives}>
+                        <button onClick={addMoreNegatives}>Add negatives</button>
+                        <input type="text" onChange={handleNegativesChange} />
+                    </div>
+                </div>
+            }
         </section>
     );
 }

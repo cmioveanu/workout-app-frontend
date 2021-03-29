@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import styles from './ExerciseHistory.module.css';
 
+import { dateConverter } from '../../utils/helpers';
+
 
 export const ExerciseHistory = () => {
     const activeExercise = useSelector(state => state.exercises.activeExercise);
@@ -25,22 +27,6 @@ export const ExerciseHistory = () => {
     }, [activeExercise, numberOfHistoryRows]);
 
 
-    //convert date from database string to a better display format
-    const dateConverter = (exerciseDate) => {
-        const monthsArray = [null, "January", "February", "March", "April",
-            "May", "June", "July", "August", "September", "November", "December"];
-
-        const year = exerciseDate.slice(0, 4);
-        const day = exerciseDate.slice(8, 10);
-
-        let month = exerciseDate.slice(5, 7);
-        if (month.charAt(0) === "0") month = month.charAt(1);
-        month = monthsArray[month];
-
-        return `${day} ${month} ${year}`;
-    }
-
-
     //Load more history items when pressing "Load more"
     const loadMoreHistory = () => {
         setNumberOfHistoryRows(previous => previous + 10);
@@ -53,7 +39,6 @@ export const ExerciseHistory = () => {
             {/* Display the activateExercise from global state into the section heading */}
             <h2 className={styles.exerciseHistoryTitle}>{activeExercise.name}</h2>
             <p className={styles.description}>Click exercise history to see past entries</p>
-            <p>{exerciseHistory.length === 0 ? "No history available." : null}</p>
 
             {/* Take the exerciseHistory from local state and map it for display*/}
             <div>

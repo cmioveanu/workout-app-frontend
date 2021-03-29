@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import styles from './WorkoutHistory.module.css';
 
 import { getWorkoutExercises, stopTotalTime, toggleShowEditWorkout } from '../Workout/WorkoutSlice';
-import {Edit} from './Edit';
+import { Edit } from './Edit';
 
 export const WorkoutHistory = () => {
     const activeRoutine = useSelector(state => state.routines.activeRoutine);
@@ -67,6 +67,11 @@ export const WorkoutHistory = () => {
 
     return (
         <section className={styles.workoutHistory}>
+
+            {
+                /* If no exercises in the routine, display a warning */
+                workoutExercises.length === 0 ? 'No exercises available yet.' : null
+            }
             {
                 workoutExercises.map(exercise => (
                     <div key={exercise.id}>
@@ -84,7 +89,7 @@ export const WorkoutHistory = () => {
 
             <button id={styles.completeButton} onClick={recordWorkout}>Record workout</button>
 
-            {/* Edid component as modal, with the ID of the Routine
+            {/* Edit component as modal, with the ID of the Routine
                 that needs to be edited/deleted in the database */}
             <Edit exerciseToEdit={exerciseToEdit} />
         </section >

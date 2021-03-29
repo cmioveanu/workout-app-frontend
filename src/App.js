@@ -35,9 +35,10 @@ const App = () => {
       dispatch(getRoutinesList(jsonRoutines));
       dispatch(changeActiveRoutine(jsonRoutines[0]));
     };
-
-    getRoutines();
-  }, [dispatch]);
+    if (loggedIn) {
+      getRoutines();
+    }
+  }, [dispatch, loggedIn]);
 
 
   //get the exercises that belong to routines
@@ -49,8 +50,10 @@ const App = () => {
       dispatch(getRoutinesExercisesList(jsonExercisesRoutines));
     };
 
-    getExercisesRoutines();
-  }, [dispatch])
+    if (loggedIn) {
+      getExercisesRoutines();
+    }
+  }, [dispatch, loggedIn]);
 
 
   //get exercises and set first index as active element when component mounts
@@ -63,8 +66,10 @@ const App = () => {
       dispatch(changeActiveExercise(jsonExercises[0]));
     };
 
-    getExercises();
-  }, [dispatch]);
+    if (loggedIn) {
+      getExercises();
+    }
+  }, [dispatch, loggedIn]);
 
 
   return (

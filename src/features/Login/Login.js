@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import styles from './Login.module.css';
 import { Link, useHistory } from 'react-router-dom';
 
-import { logIn } from './LoginSlice';
+import { logIn, logOut } from './LoginSlice';
 
 
 export const Login = () => {
@@ -29,6 +29,7 @@ export const Login = () => {
             })
         }).then(res => {
             if(res.status === 200) {
+                dispatch(logOut());
                 dispatch(logIn());
                 history.push('/workout');
             }

@@ -13,6 +13,7 @@ export const Edit = props => {
     const showModal = useSelector(state => state.routines.editRoutineShow);
     const exercisesRoutines = useSelector(state => state.routines.routinesExercisesList);
     const exercises = useSelector(state => state.exercises.exercisesList);
+    console.log(exercises);
 
     const [newRoutineName, setNewRoutineName] = useState("");
     const [selectedExercise, setSelectedExercise] = useState(null);
@@ -151,7 +152,7 @@ export const Edit = props => {
                     <select>
                         {exercises.map(exercise => (
                             <option value={exercise.name}
-                                key={exercise.id}
+                                key={exercise.id + 'dropDown'}
                                 onClick={() => handleSelectChange(exercise.id)}>{exercise.name}</option>
                         ))}
                     </select>

@@ -61,7 +61,6 @@ export const RoutineHistory = () => {
             {/* Display the activateRoutine from global state into the section heading */}
             <h2 className={styles.routineHistoryTitle}>{activeRoutine.name}</h2>
             <p className={styles.description}>Click routine history to see past entries</p>
-            <p>{datesHistory.length === 0 ? "No history available." : null}</p>
             {
                 datesHistory.map(date => (
                     /* Take the RoutineHistory from local state and map it for display*/
