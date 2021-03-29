@@ -58,3 +58,25 @@
     border-bottom: 1px solid #2fd5cd;
 }
 
+
+.registerContainer .submitButton {
+    background-color: #333333;
+    border: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+}
+
+.registerContainer .submitButton:hover {
+    background-color: #2fd5cd;
+}
+
+
+.registerContainer .alert {
+    color: red;
+    font-style: italic;
+    margin: 0;
+}
+

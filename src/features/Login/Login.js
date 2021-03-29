@@ -40,10 +40,10 @@ export const Login = () => {
         <section className={styles.loginContainer}>
             <form onSubmit={handleSubmit} action="">
                 <label htmlFor="username">Username:</label>
-                <input type="text" name="username" id="username"
+                <input type="text" name="username" id="username" required
                     onChange={e => setUsername(e.target.value)} />
                 <label htmlFor="password">Password:</label>
-                <input type="password" name="password" id="password"
+                <input type="password" name="password" id="password" required
                     onChange={e => setPassword(e.target.value)} />
                 <input type="submit" className={styles.submitButton} value="Log In" />
             </form>
