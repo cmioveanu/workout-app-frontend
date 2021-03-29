@@ -3,25 +3,6 @@ import { useSelector } from 'react-redux';
 import styles from './ExerciseHistory.module.css';
 
 
-
-/*  
-    # Fetch list of exercise on component mount
-    - useEffect for fetching exercise and workout lists in <App /> component,
-      store them in global state(Work out and Routines page uses them as well)
-    - display exercises in a <select> tag
-
-    # Fetch history of an exercise
-    - when selecting the exercise from the dropdown, use its value in the fetch request (onchange)
-    - add history to local state
-    - take history from state and map for display
-
-    # Load more history
-    - load 10 rows initially
-    - each button press loads 10 more
-    - button press increases LIMIT by 10 in local state (numberOfHistoryRows)
-*/
-
-
 export const ExerciseHistory = () => {
     const activeExercise = useSelector(state => state.exercises.activeExercise);
     const [numberOfHistoryRows, setNumberOfHistoryRows] = useState(10);
@@ -31,8 +12,7 @@ export const ExerciseHistory = () => {
     //get the history of the exercise when component is mounted
     useEffect(() => {
         const fetchExerciseHistory = async () => {
-            const baseUrl = "/myExercises/";
-
+            const baseUrl = "/api/exercises/";
             const fetchUrl = baseUrl + activeExercise.id + `/${numberOfHistoryRows}`;
 
             const exerciseHistoryResults = await fetch(fetchUrl);

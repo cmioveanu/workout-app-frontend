@@ -12,6 +12,8 @@ export const Edit = props => {
     const showModal = useSelector(state => state.exercises.editExerciseShow);
     const [newExerciseName, setNewExerciseName] = useState("");
 
+    const baseUrl = "api/exercises/";
+
     if (!showModal) {
         return null;
     }
@@ -19,7 +21,6 @@ export const Edit = props => {
 
     //send a request to edit in database and close modal
     const handleDoneClick = async () => {
-        const baseUrl = "/myExercises/";
         const fetchUrl = baseUrl + props.exerciseToEdit.id;
 
         const fetchOptions = {
@@ -42,7 +43,6 @@ export const Edit = props => {
 
     //send a request to delete from database and close modal
     const handleDeleteClick = async () => {
-        const baseUrl = "/myExercises/";
         const fetchUrl = baseUrl + props.exerciseToEdit.id;
 
         const fetchOptions = {

@@ -16,6 +16,8 @@ export const Edit = props => {
 
     const [newRoutineName, setNewRoutineName] = useState("");
     const [selectedExercise, setSelectedExercise] = useState(null);
+
+    const baseUrl = "api/routines/";
    
 
     //update state when exercises are loaded in the app
@@ -34,7 +36,6 @@ export const Edit = props => {
 
     //send a request to edit in database and close modal
     const handleDoneClick = async () => {
-        const baseUrl = "/myRoutines/";
         const fetchUrl = baseUrl + props.routineToEdit.id;
 
         const fetchOptions = {
@@ -57,7 +58,6 @@ export const Edit = props => {
 
     //send a request to delete routine from database and close modal
     const handleDeleteClick = async () => {
-        const baseUrl = "/myRoutines/";
         const fetchUrl = baseUrl + props.routineToEdit.id;
 
         const fetchOptions = {
@@ -90,7 +90,6 @@ export const Edit = props => {
 
     //remove exercise from this routine
     const removeExercise = async (exerciseID) => {
-        const baseUrl = "/myRoutines/";
         const fetchUrl = baseUrl + props.routineToEdit.id + "/" + exerciseID;
 
         const fetchOptions = {
@@ -108,7 +107,6 @@ export const Edit = props => {
 
     //add exercise to this routine
     const handleAddOnChange = async (exerciseID) => {
-        const baseUrl = "http://localhost:8080/myRoutines/";
         const fetchUrl = baseUrl + props.routineToEdit.id + "/" + exerciseID;
 
         const fetchOptions = {

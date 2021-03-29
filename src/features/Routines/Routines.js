@@ -27,7 +27,7 @@ export const Routines = () => {
 
     //add Routine to database when pressing "Create new ex."
     const handleSubmit = (event) => {
-        fetch("/myRoutines", {
+        fetch("api/routines", {
             method: 'POST',
             body: JSON.stringify({ "name": newRoutineName }),
             headers: {

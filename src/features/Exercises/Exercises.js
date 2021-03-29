@@ -23,7 +23,7 @@ export const Exercises = () => {
 
     //add exercise to database when pressing "Create new ex."
     const handleSubmit = (event) => {
-        fetch("/myExercises", {
+        fetch("api/exercises", {
             method: 'POST',
             body: JSON.stringify({ "name": newExerciseName }),
             headers: {

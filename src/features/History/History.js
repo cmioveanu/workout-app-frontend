@@ -13,7 +13,7 @@ export const History = () => {
     //get the history of the Routine when component is mounted
     useEffect(() => {
         const fetchRoutineHistory = async () => {
-            const baseUrl = "/myRoutines/";
+            const baseUrl = "api/routines/";
 
             const fetchUrl = baseUrl + "history/" + numberOfHistoryRows;
 

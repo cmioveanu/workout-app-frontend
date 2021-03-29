@@ -12,12 +12,12 @@ export const WorkoutHistory = () => {
     const [exerciseToEdit, setExerciseToEdit] = useState(null);
     const dispatch = useDispatch();
 
+    const baseUrl = "api/workout/";
+
 
     //get the exercises for currently selected Routine
     useEffect(() => {
         const fetchWorkoutExercises = async () => {
-            const baseUrl = "/myWorkout/";
-
             const fetchUrl = baseUrl + activeRoutine.id;
 
             const workoutExercisesResults = await fetch(fetchUrl);
@@ -46,9 +46,6 @@ export const WorkoutHistory = () => {
             exercises: workoutExercises,
         }
 
-        console.log(workoutDetails);
-
-        const fetchUrl = "/myWorkout/";
         const fetchOptions = {
             method: 'POST',
             body: JSON.stringify(workoutDetails),
@@ -57,7 +54,7 @@ export const WorkoutHistory = () => {
             }
         };
 
-        fetch(fetchUrl, fetchOptions);
+        fetch(baseUrl, fetchOptions);
     }
 
 
