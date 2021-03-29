@@ -16,15 +16,15 @@ export const Edit = props => {
     console.log(exercises);
 
     const [newRoutineName, setNewRoutineName] = useState("");
-    const [selectedExercise, setSelectedExercise] = useState(null);
+    const [selectedExerciseID, setSelectedExerciseID] = useState(null);
 
     const baseUrl = "api/routines/";
-   
+
 
     //update state when exercises are loaded in the app
     useEffect(() => {
-        if(exercises.length > 0) {
-            setSelectedExercise();
+        if (exercises.length > 0) {
+            setSelectedExerciseID(exercises[0].id);
         }
     }, [exercises.length]);
 
@@ -117,15 +117,12 @@ export const Edit = props => {
             }
         };
 
-        const routinesExercisesList = await fetch(fetchUrl, fetchOptions);
-        const jsonRoutinesExercisesList = await routinesExercisesList.json();
-        dispatch(getRoutinesExercisesList(jsonRoutinesExercisesList));
-    }
-
-
-    //change selected exercise in state
-    const handleSelectChange = (exerciseID) => {
-        setSelectedExercise(exerciseID);
+        //only try to add an exercise if it exists
+        if (selectedExerciseID) {
+            const routinesExercisesList = await fetch(fetchUrl, fetchOptions);
+            const jsonRoutinesExercisesList = await routinesExercisesList.json();
+            dispatch(getRoutinesExercisesList(jsonRoutinesExercisesList));
+        }
     }
 
 
@@ -153,10 +150,10 @@ export const Edit = props => {
                         {exercises.map(exercise => (
                             <option value={exercise.name}
                                 key={exercise.id + 'dropDown'}
-                                onClick={() => handleSelectChange(exercise.id)}>{exercise.name}</option>
+                                onClick={() => setSelectedExerciseID(exercise.id)}>{exercise.name}</option>
                         ))}
                     </select>
-                    <button onClick={() => handleAddOnChange(selectedExercise)}>Add Exercise</button>
+                    <button onClick={() => handleAddOnChange(selectedExerciseID)}>Add Exercise</button>
                 </div>
 
                 <div className={styles.buttonsContainer}>
