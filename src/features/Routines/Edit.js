@@ -13,7 +13,6 @@ export const Edit = props => {
     const showModal = useSelector(state => state.routines.editRoutineShow);
     const exercisesRoutines = useSelector(state => state.routines.routinesExercisesList);
     const exercises = useSelector(state => state.exercises.exercisesList);
-    console.log(exercises);
 
     const [newRoutineName, setNewRoutineName] = useState("");
     const [selectedExerciseID, setSelectedExerciseID] = useState(null);
@@ -26,7 +25,7 @@ export const Edit = props => {
         if (exercises.length > 0) {
             setSelectedExerciseID(exercises[0].id);
         }
-    }, [exercises.length]);
+    }, [exercises]);
 
 
     //only show this component when the edit button was pressed

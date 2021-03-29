@@ -1,8 +1,22 @@
 import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { logOut } from '../Login/LoginSlice';
 
 
 export const Header = () => {
+    const loggedIn = useSelector(state => state.login.loggedIn);
+    const dispatch = useDispatch();
+
+
+    //log out and redirect to login page
+    const handleLogoutClick = () => {
+        fetch('api/login/logout');
+        dispatch(logOut());
+    }
+
+
     return (
         <header>
             <nav className={styles.mainNav}>
@@ -15,7 +29,10 @@ export const Header = () => {
                     <li><Link to="/howtouse">How to use</Link></li>
                 </ul>
                 <ul>
-                    <li><Link to="/login">Login</Link></li>
+                    {
+                        !loggedIn ? <li><Link to="/login">Login</Link></li> :
+                            <li><Link to="/login" onClick={handleLogoutClick}>Logout</Link></li>
+                    }
                     <li><Link to="/settings">Account</Link></li>
                 </ul>
             </nav>
