@@ -18,7 +18,7 @@ export const Login = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        fetch('api/login', {
+        fetch('api/account/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

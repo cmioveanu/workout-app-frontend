@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from './Account.module.css';
 
 
 export const Account = () => {
-    const [oldEmail, setOldEmail] = useState("");
     const [newEmail, setNewEmail] = useState("");
     const [emailConfirm, setEmailConfirm] = useState("");
 
@@ -13,7 +12,9 @@ export const Account = () => {
 
 
     //change email
-    const handleEmailSubmit = () => {
+    const handleEmailSubmit = (event) => {
+        event.preventDefault();
+
         if (newEmail === emailConfirm) {
             fetch('api/account/email', {
                 method: 'PUT',
@@ -21,7 +22,7 @@ export const Account = () => {
                     'content-type': 'application/json',
                 },
                 body: JSON.stringify({
-                    oldEmail: oldEmail,
+                    password: oldPassword,
                     newEmail: newEmail
                 })
             });
@@ -30,7 +31,9 @@ export const Account = () => {
 
 
     //change password
-    const handlePasswordSubmit = () => {
+    const handlePasswordSubmit = (event) => {
+        event.preventDefault();
+
         if (newPassword === passwordConfirm) {
             fetch('api/account/password', {
                 method: 'PUT',
@@ -51,9 +54,9 @@ export const Account = () => {
             <h2>Change email or password</h2>
             <div className={styles.formsContainer}>
                 <form onSubmit={handleEmailSubmit} action="">
-                    <label htmlFor="oldEmail">Enter old email address:</label>
-                    <input id="oldEmail" type="email" required
-                        onChange={e => setOldEmail(e.target.value)} />
+                    <label htmlFor="passwordConfirmEmail">Enter old email address:</label>
+                    <input id="passwordConfirmEmail" type="password" required
+                        onChange={e => setOldPassword(e.target.value)} />
                     <label htmlFor="newEmail">New email address:</label>
                     <input id="newEmail" type="email" required
                         onChange={e => setNewEmail(e.target.value)} />

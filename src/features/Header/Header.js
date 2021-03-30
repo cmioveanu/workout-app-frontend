@@ -12,7 +12,7 @@ export const Header = () => {
 
     //log out and redirect to login page
     const handleLogoutClick = () => {
-        fetch('api/login/logout');
+        fetch('api/account/logout');
         dispatch(logOut());
     }
 
