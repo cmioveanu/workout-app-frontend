@@ -15,6 +15,7 @@ import { Workout } from './features/Workout/Workout';
 import { WorkoutHistory } from './features/WorkoutHistory/WorkoutHistory';
 import { Login } from './features/Login/Login';
 import { Register } from './features/Login/Register';
+import { Account } from './features/Account/Account';
 
 
 //import action creators
@@ -116,6 +117,10 @@ const App = () => {
 
               <Route exact path="/register">
                 <Register />
+              </Route>
+
+              <Route exact path="/account">
+                {!loggedIn ? <Redirect to="/login" /> : <Account />}
               </Route>
             </Switch>
           </main>

@@ -33,7 +33,7 @@ export const Header = () => {
                         !loggedIn ? <li><Link to="/login">Login</Link></li> :
                             <li><Link to="/login" onClick={handleLogoutClick}>Logout</Link></li>
                     }
-                    <li><Link to="/settings">Account</Link></li>
+                    <li><Link to="/account">Account</Link></li>
                 </ul>
             </nav>
         </header>

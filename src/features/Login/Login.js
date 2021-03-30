@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import styles from './Login.module.css';
 import { Link, useHistory } from 'react-router-dom';
 
-import { logIn, logOut } from './LoginSlice';
+import { logIn } from './LoginSlice';
 
 
 export const Login = () => {
@@ -29,7 +29,6 @@ export const Login = () => {
             })
         }).then(res => {
             if(res.status === 200) {
-                dispatch(logOut());
                 dispatch(logIn());
                 history.push('/workout');
             }
@@ -41,7 +40,7 @@ export const Login = () => {
         <section className={styles.loginContainer}>
             <form onSubmit={handleSubmit} action="">
                 <label htmlFor="username">Username:</label>
-                <input type="text" name="username" id="username" required
+                <input type="email" name="username" id="username" required
                     onChange={e => setUsername(e.target.value)} />
                 <label htmlFor="password">Password:</label>
                 <input type="password" name="password" id="password" required

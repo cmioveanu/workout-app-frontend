@@ -42,7 +42,7 @@ export const Register = () => {
         <section className={styles.registerContainer} onSubmit={handleSubmit} action="">
             <form>
                 <label htmlFor="username">Username:</label>
-                <input id="username" type="text" required
+                <input id="username" type="email" required
                     onChange={e => setUsername(e.target.value)} />
                 <label htmlFor="password">Password:</label>
                 <input id="password" type="password" required
