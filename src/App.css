@@ -2,7 +2,7 @@
     padding: 5%;
 }
 
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 1500px) {
     .mainContainer {
         padding: 2.5%;
     }

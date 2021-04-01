@@ -10,6 +10,7 @@
     width: 50%;
     max-height: 800px;
     overflow: hidden;
+    border: 10px solid #2fd5cd;
 }
 
 .mainImage img {
