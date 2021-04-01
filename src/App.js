@@ -17,6 +17,7 @@ import { Login } from './features/Login/Login';
 import { Register } from './features/Login/Register';
 import { Account } from './features/Account/Account';
 import { HowToUse } from './features/HowToUse/HowToUse';
+import { LandingPage } from './features/LandingPage/LandingPage';
 
 
 //import action creators
@@ -81,6 +82,10 @@ const App = () => {
         <div className="mainContainer">
           <main>
             <Switch>
+              <Route exact path="/">
+                <LandingPage />
+              </Route>
+
               <Route exact path="/workout">
                 {!loggedIn ? <Redirect to="/login" /> :
                   <Fragment>

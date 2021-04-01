@@ -1,0 +1,82 @@
+.landingPageContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+.mainImage {
+    width: 50%;
+    max-height: 800px;
+    overflow: hidden;
+}
+
+.mainImage img {
+    width: 100%;
+}
+
+
+
+
+
+
+/* Right side with texts*/
+.textContainer {
+    width: 40;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.textContainer p {
+    line-height: 1.75;
+}
+
+.textContainer h2 {
+    font-size: 2.5rem;
+    margin-top: 0;
+}
+
+.textContainer h2 span {
+    color: #2fd5cd;
+    font-weight: 100;
+}
+
+.textContainer h3 span {
+    color: #2fd5cd;
+    text-transform: uppercase;
+}
+
+.textContainer a {
+    text-decoration: none;
+    color: #2fd5cd;
+    font-weight: bold;
+    font-style: italic;
+    padding-bottom: 3px;
+}
+
+.textContainer a:hover {
+    border-bottom: 1px solid #2fd5cd;
+}
+
+.textContainer button {
+    background-color: #2fd5cd;
+    width: 100px;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.textContainer button:hover {
+    background-color: #333;
+}
+
+.textContainer a {
+    color: white;
+    font-style: normal;
+}
+
+.textContainer a:hover {
+    border: none;
+}
+
+
