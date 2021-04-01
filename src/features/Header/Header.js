@@ -20,14 +20,18 @@ export const Header = () => {
     return (
         <header>
             <nav className={styles.mainNav}>
-                <h1>LOGO</h1>
-                <ul>
-                    <li><Link to="/workout">Work out</Link></li>
-                    <li><Link to="/history">History</Link></li>
-                    <li><Link to="/exercises">Exercises</Link></li>
-                    <li><Link to="/routines">Routines</Link></li>
-                    <li><Link to="/howtouse">How to use</Link></li>
-                </ul>
+                <Link to="/"><h1 id={styles.logo}>HIT <span>WORKOUT</span></h1></Link>
+
+                {/* If not logged in, don't display the main menu */}
+                {!loggedIn ? null :
+                    <ul>
+                        <li><Link to="/workout">Work out</Link></li>
+                        <li><Link to="/history">History</Link></li>
+                        <li><Link to="/exercises">Exercises</Link></li>
+                        <li><Link to="/routines">Routines</Link></li>
+                        <li><Link to="/howtouse">How to use</Link></li>
+                    </ul>
+                }
                 <ul>
                     {
                         !loggedIn ? <li><Link to="/login">Login</Link></li> :

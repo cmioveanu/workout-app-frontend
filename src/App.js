@@ -16,6 +16,7 @@ import { WorkoutHistory } from './features/WorkoutHistory/WorkoutHistory';
 import { Login } from './features/Login/Login';
 import { Register } from './features/Login/Register';
 import { Account } from './features/Account/Account';
+import { HowToUse } from './features/HowToUse/HowToUse';
 
 
 //import action creators
@@ -109,6 +110,10 @@ const App = () => {
                     <RoutineHistory />
                   </Fragment>
                 }
+              </Route>
+
+              <Route exact path="/howtouse">
+                {!loggedIn ? <Redirect to="/login" /> : <HowToUse />}
               </Route>
 
               <Route exact path="/login">

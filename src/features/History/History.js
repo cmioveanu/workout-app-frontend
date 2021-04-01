@@ -55,7 +55,7 @@ export const History = () => {
     return (
         <section className={styles.routineHistory}>
 
-            <p>{routineHistory.length === 0 ? "No history available." : null}</p>
+            {routineHistory.length === 0 ? <p>"No history available."</p> : null}
             {
                 datesNamesHistory.map(dateName => (
                     /* Take the RoutineHistory from local state and map it for display*/

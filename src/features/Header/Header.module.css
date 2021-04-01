@@ -3,8 +3,19 @@ header {
     background: #333333;
 }
 
-header h1 {
+#logo {
+    border: 1px solid #2fd5cd;
+    padding: 8px;
+    color: #2fd5cd;
+}
+
+#logo:hover {
+    border-color: white;
     color: white;
+}
+
+#logo span {
+    font-weight: 300;
 }
 
 .mainNav {

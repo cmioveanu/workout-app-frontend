@@ -39,6 +39,7 @@ export const ExerciseHistory = () => {
             {/* Display the activateExercise from global state into the section heading */}
             <h2 className={styles.exerciseHistoryTitle}>{activeExercise.name}</h2>
             <p className={styles.description}>Click exercise history to see past entries</p>
+            <p>{exerciseHistory.length === 0 ? "No history available." : null}</p>
 
             {/* Take the exerciseHistory from local state and map it for display*/}
             <div>

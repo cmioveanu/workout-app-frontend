@@ -54,7 +54,7 @@ export const Account = () => {
             <h2>Change email or password</h2>
             <div className={styles.formsContainer}>
                 <form onSubmit={handleEmailSubmit} action="">
-                    <label htmlFor="passwordConfirmEmail">Enter old email address:</label>
+                    <label htmlFor="passwordConfirmEmail">Enter your password:</label>
                     <input id="passwordConfirmEmail" type="password" required
                         onChange={e => setOldPassword(e.target.value)} />
                     <label htmlFor="newEmail">New email address:</label>

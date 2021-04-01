@@ -9,6 +9,10 @@
     margin: 0;
 }
 
+.routineHistory h3 {
+    margin-top: 0;
+}
+
 .routineHistory button {
     background-color: #333333;
     margin-top: 2rem;
