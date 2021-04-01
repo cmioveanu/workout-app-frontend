@@ -4,25 +4,20 @@
     align-items: center;
 }
 
-
-
-.mainImage {
+#mainImage {
     width: 50%;
-    max-height: 800px;
+    height: 95%;
+    max-height: 750px;
     overflow: hidden;
     border: 10px solid #2fd5cd;
 }
 
-.mainImage img {
+#mainImage img {
     width: 100%;
 }
 
-
-
-
-
-
 /* Right side with texts*/
+
 .textContainer {
     width: 40;
     margin: 0 auto;
@@ -80,4 +75,18 @@
     border: none;
 }
 
+/* Media Queries */
 
+@media only screen and (max-width: 1000px) {
+    .landingPageContainer {
+        flex-wrap: wrap;
+    }
+    #mainImage {
+        width: 100%;
+        max-height: 400px;
+        border: 10px solid #2fd5cd !important;
+    }
+    .textContainer {
+        text-align: center;
+    }
+}

@@ -55,3 +55,13 @@
 .spanPadding {
     padding-left: 9px;
 }
+
+
+
+/* Media Queries */
+
+@media only screen and (max-width: 730px) {
+    .exerciseHistoryTitle {
+        margin-top: 1rem;
+    }
+}

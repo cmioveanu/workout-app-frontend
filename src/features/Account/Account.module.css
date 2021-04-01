@@ -9,6 +9,7 @@
     padding-bottom: 0.75rem;
     margin-bottom: 2rem;
     border-bottom: 1px solid #2fd5cd;
+    margin-top: 0;
 }
 
 .formsContainer {
@@ -30,7 +31,7 @@
 
 .accountContainer input {
     margin-top: 4px;
-    margin-bottom: 12px;
+    margin-bottom: 6px;
     padding: 8px;
     border-radius: 0;
     border: 1px solid #2fd5cd;
@@ -44,9 +45,23 @@
 
 .accountContainer button {
     background-color: #2fd5cd;
-    margin-top: 1rem;
+    margin-top: 12px;
 }
 
 .accountContainer button:hover {
     background-color: #333333;
+}
+
+
+
+/* Media Queries */
+
+@media only screen and (max-width: 730px) {
+    .formsContainer {
+        flex-wrap: wrap;
+    }
+    .formsContainer form {
+        width: 100%;
+        margin-bottom: 3rem;
+    }
 }

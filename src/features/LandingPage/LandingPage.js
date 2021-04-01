@@ -8,7 +8,7 @@ export const LandingPage = () => {
 
     return (
         <div className={styles.landingPageContainer}>
-            <section className={styles.mainImage}>
+            <section id={styles.mainImage}>
                 <img src={background} />
             </section>
             <section className={styles.textContainer}>
