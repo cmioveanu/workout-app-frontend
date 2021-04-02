@@ -9,7 +9,7 @@ export const LandingPage = () => {
     return (
         <div className={styles.landingPageContainer}>
             <section id={styles.mainImage}>
-                <img src={background} />
+                <img src={background} alt='Man doing pullups'/>
             </section>
             <section className={styles.textContainer}>
                 <h2>Maximum intensity. <br /><span>Minimum time.</span></h2>
