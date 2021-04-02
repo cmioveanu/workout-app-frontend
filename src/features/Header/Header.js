@@ -35,7 +35,7 @@ export const Header = () => {
                 <ul>
                     {
                         !loggedIn ? <li><Link to="/login">Login</Link></li> :
-                            <li><Link to="/login" onClick={handleLogoutClick}>Logout</Link></li>
+                            <li><Link to="/login" onClick={handleLogoutClick}>Log out</Link></li>
                     }
                     <li><Link to="/account">Account</Link></li>
                 </ul>
