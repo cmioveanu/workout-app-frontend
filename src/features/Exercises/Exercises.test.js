@@ -73,17 +73,6 @@ test('creates new exercise', async () => {
 });
 
 
-test('changes active exercise when clicking history', () => {
-    const historyButtons = screen.getAllByText('History');
-    const secondHistory = historyButtons[1];
-
-    fireEvent.click(secondHistory);
-
-    const activeExercise = store.getState().exercises.activeExercise;
-    expect(activeExercise.name).toBe('Hanging leg raises');
-});
-
-
 test('displays and hides Edit component with no name change', () => {
     //open Edit component modal
     const editButtons = screen.getAllByText('Edit');

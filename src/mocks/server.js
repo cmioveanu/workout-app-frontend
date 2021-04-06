@@ -20,6 +20,8 @@ const exercises = [
 ];
 
 const handlers = [
+
+    //History route
     rest.get('/api/routines/history/:number', (req, res, ctx) => {
         return res(ctx.json([
             {
@@ -40,6 +42,8 @@ const handlers = [
             }
         ]));
     }),
+
+    //Exercises route
     rest.get('/api/exercises', (req, res, ctx) => {
         return res(ctx.json(exercises));
     }),

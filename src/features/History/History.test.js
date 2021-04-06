@@ -26,7 +26,7 @@ test('renders names and dates', async () => {
 });
 
 
-test('renders exercise history', async () => {
+test('renders individual exercise history', async () => {
     render(<History />);
 
     await waitFor(() => {
