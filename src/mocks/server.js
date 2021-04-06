@@ -1,6 +1,7 @@
 import { rest } from 'msw';
 import { setupServer } from 'msw/node'
 
+
 const exercises = [
     {
         id: 80,
@@ -19,7 +20,9 @@ const exercises = [
     }
 ];
 
+
 const handlers = [
+
 
     //History route
     rest.get('/api/routines/history/:number', (req, res, ctx) => {
@@ -42,6 +45,7 @@ const handlers = [
             }
         ]));
     }),
+
 
     //Exercises route
     rest.get('/api/exercises', (req, res, ctx) => {
@@ -80,6 +84,15 @@ const handlers = [
     rest.delete('/api/exercises/79', (req, res, ctx) => {
         const exercisesCopy = exercises.filter(e => e.id === 79);
         return res(ctx.json(exercisesCopy));
+    }),
+
+
+    //Account route
+    rest.post('/api/account/login', (req, res, ctx) => {
+        const { username, password } = req.body;
+        if(username === 'TestUser' && password === 'TestPassword') {
+            return res(ctx.status(200));
+        }
     }),
 
 ];
