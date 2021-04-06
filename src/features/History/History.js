@@ -10,7 +10,7 @@ export const History = () => {
     const [datesNamesHistory, setDatesNamesHistory] = useState([]);
 
 
-    //get the history of the Routine when component is mounted
+    //get the history when component is mounted
     useEffect(() => {
         const fetchRoutineHistory = async () => {
             const baseUrl = "api/routines/";

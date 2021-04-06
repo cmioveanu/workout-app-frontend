@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import { workoutSlice } from '../Workout/WorkoutSlice';
 
 import { HowToUse } from './HowToUse';
 
