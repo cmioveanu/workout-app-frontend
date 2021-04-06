@@ -90,8 +90,20 @@ const handlers = [
     //Account route
     rest.post('/api/account/login', (req, res, ctx) => {
         const { username, password } = req.body;
-        if(username === 'TestUser' && password === 'TestPassword') {
+        if (username === 'TestUser' && password === 'TestPassword') {
             return res(ctx.status(200));
+        }
+    }),
+    rest.post('/api/account/register', (req, res, ctx) => {
+        const users = ['test1', 'test2', 'test3'];
+
+        const { username } = req.body;
+        const userExists = users.find(user => user === username);
+
+        if (userExists) {
+            return res(ctx.status(403));
+        } else {
+            return res(ctx.status(201));
         }
     }),
 
