@@ -55,6 +55,22 @@ const handlers = [
             user_id: 10
         }]));
     }),
+    rest.get('/api/exercises/80/10', (req, res, ctx) => {
+        return res(ctx.json([
+            {
+                date: '2021-03-29T23:00:00.000Z',
+                name: 'Crunches',
+                time_under_load: 6,
+                negatives: 5
+            },
+            {
+                date: '2021-02-29T23:00:00.000Z',
+                name: 'Crunches',
+                time_under_load: 9,
+                negatives: 2
+            },
+        ]));
+    }),
     rest.put('/api/exercises/79', (req, res, ctx) => {
         const exercisesCopy = [...exercises];
         exercisesCopy[1].name = req.body.newName;
@@ -65,6 +81,7 @@ const handlers = [
         const exercisesCopy = exercises.filter(e => e.id === 79);
         return res(ctx.json(exercisesCopy));
     }),
+
 ];
 
 

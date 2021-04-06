@@ -24,6 +24,7 @@ export const ExerciseHistory = () => {
         };
 
         fetchExerciseHistory();
+        
     }, [activeExercise, numberOfHistoryRows]);
 
 
