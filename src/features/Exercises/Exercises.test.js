@@ -5,6 +5,7 @@ import store from '../../app/store';
 import { getExercisesList, changeActiveExercise } from '../Exercises/ExercisesSlice';
 
 import { Exercises } from './Exercises';
+import { ExerciseHistory } from '../ExerciseHistory/ExerciseHistory';
 
 
 //add mock exercises and active exercise to the store, then render component
@@ -94,10 +95,10 @@ test('displays and hides Edit component with no name change', () => {
 
     expect(doneButton).toBeInTheDocument();
     expect(deleteButton).toBeInTheDocument();
-    
+
     //hide the Edit component modal again
     fireEvent.click(doneButton);
-    
+
     const newDone = screen.queryByText('Done');
     const newDelete = screen.queryByText('Delete exercise');
     expect(newDone).toBeNull();
@@ -142,4 +143,26 @@ test('deletes exercise on Delete button click', async () => {
         const deletedExercise = screen.queryByText('Hanging leg raises');
         expect(deletedExercise).toBeNull();
     });
+});
+
+
+test('changes active exercise for history component', () => {
+    render(
+        <Provider store={store}>
+            <ExerciseHistory />
+        </Provider>
+    );
+
+    //Hanging leg raises should show up only once
+    const oldLegRaises = screen.getAllByText('Hanging leg raises');
+    expect(oldLegRaises.length).toBe(1);
+
+    const historyButtons = screen.getAllByText('History');
+    const secondHistory = historyButtons[1];
+
+    fireEvent.click(secondHistory);
+
+    //Hanging leg raises should show up twice now
+    const legRaises = screen.getAllByText('Hanging leg raises');
+    expect(legRaises.length).toBe(2);
 });
