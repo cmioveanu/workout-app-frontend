@@ -51,7 +51,16 @@ const handlers = [
             user_id: 10
         }]));
     }),
+    rest.put('/api/exercises/79', (req, res, ctx) => {
+        const exercisesCopy = [...exercises];
+        exercisesCopy[1].name = req.body.newName;
 
+        return res(ctx.json(exercisesCopy));
+    }),
+    rest.delete('/api/exercises/79', (req, res, ctx) => {
+        const exercisesCopy = exercises.filter(e => e.id === 79);
+        return res(ctx.json(exercisesCopy));
+    }),
 ];
 
 

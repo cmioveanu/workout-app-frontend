@@ -83,10 +83,10 @@ test('changes active exercise when clicking history', () => {
 });
 
 
-test('displays edit component when clicking edit', () => {
+test('displays and hides Edit component with no name change', () => {
+    //open Edit component modal
     const editButtons = screen.getAllByText('Edit');
     const secondEdit = editButtons[1];
-
     fireEvent.click(secondEdit);
 
     const doneButton = screen.getByText('Done');
@@ -94,4 +94,52 @@ test('displays edit component when clicking edit', () => {
 
     expect(doneButton).toBeInTheDocument();
     expect(deleteButton).toBeInTheDocument();
+    
+    //hide the Edit component modal again
+    fireEvent.click(doneButton);
+    
+    const newDone = screen.queryByText('Done');
+    const newDelete = screen.queryByText('Delete exercise');
+    expect(newDone).toBeNull();
+    expect(newDelete).toBeNull();
+});
+
+
+test('edits exercise name when new name typed in', async () => {
+    //open Edit component modal
+    const editButtons = screen.getAllByText('Edit');
+    const secondEdit = editButtons[1];
+    fireEvent.click(secondEdit);
+
+    //edit exercise name
+    const input = screen.getByPlaceholderText('enter new name');
+    const doneButton = screen.getByText('Done');
+    fireEvent.change(input, { target: { value: 'Wide Pullups' } });
+    fireEvent.click(doneButton);
+
+    await waitFor(() => {
+        const newExerciseName = screen.getByText('Wide Pullups');
+        expect(newExerciseName).toBeInTheDocument();
+    });
+});
+
+
+test('deletes exercise on Delete button click', async () => {
+    //exercise exists before deletion
+    const exercise = screen.getByText('Hanging leg raises');
+    expect(exercise).toBeInTheDocument();
+
+    //open Edit component modal
+    const editButtons = screen.getAllByText('Edit');
+    const secondEdit = editButtons[1];
+    fireEvent.click(secondEdit);
+
+    const deleteButton = screen.getByText('Delete exercise');
+    fireEvent.click(deleteButton);
+
+    //exercise is deleted
+    await waitFor(() => {
+        const deletedExercise = screen.queryByText('Hanging leg raises');
+        expect(deletedExercise).toBeNull();
+    });
 });

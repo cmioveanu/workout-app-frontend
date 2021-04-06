@@ -1,6 +1,3 @@
-//modal that gets displayed when clicking "Edit" button and gets passed an id prop for an exercise
-//this modal can make a PUT request to edit an existing exercise
-//or a DELETE request to delete an exercise
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './Edit.module.css';
