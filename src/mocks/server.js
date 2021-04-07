@@ -106,6 +106,22 @@ const handlers = [
             return res(ctx.status(201));
         }
     }),
+    rest.put('/api/account/email', (req, res, ctx) => {
+        const { password } = req.body;
+        if (password === 'testPassword') {
+            return res(ctx.status(200));
+        } else {
+            return res(ctx.status(403));
+        }
+    }),
+    rest.put('/api/account/password', (req, res, ctx) => {
+        const { oldPassword } = req.body;
+        if (oldPassword === 'testPassword') {
+            return res(ctx.status(200));
+        } else {
+            return res(ctx.status(403));
+        }
+    })
 
 ];
 

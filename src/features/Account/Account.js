@@ -10,6 +10,8 @@ export const Account = () => {
     const [newPassword, setNewPassword] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
 
+    const [alertMessage, setAlertMessage] = useState("");
+
 
     //change email
     const handleEmailSubmit = (event) => {
@@ -25,7 +27,16 @@ export const Account = () => {
                     password: oldPassword,
                     newEmail: newEmail
                 })
+            }).then(res => {
+                if (res.status === 200) {
+                    setAlertMessage('Email changed.');
+                }
+                else if (res.status === 403) {
+                    setAlertMessage('Unable to change email. Please try again!');
+                }
             });
+        } else {
+            setAlertMessage("Emails don't match. Try again!");
         }
     }
 
@@ -44,7 +55,16 @@ export const Account = () => {
                     oldPassword: oldPassword,
                     newPassword: newPassword
                 })
+            }).then(res => {
+                if (res.status === 200) {
+                    setAlertMessage('Password changed.');
+                }
+                else if (res.status === 403) {
+                    setAlertMessage('Unable to change password. Please try again!');
+                }
             });
+        } else {
+            setAlertMessage("Passwords don't match. Try again!");
         }
     }
 
@@ -79,6 +99,7 @@ export const Account = () => {
                     <button type="submit">Change password</button>
                 </form>
             </div>
+            <p className={styles.alert}>{alertMessage}</p>
         </section >
     );
 }
