@@ -3,7 +3,6 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import store from '../../app/store';
 import { getExercisesList, changeActiveExercise } from '../Exercises/ExercisesSlice';
-import { logIn } from '../Login/LoginSlice';
 
 import { Exercises } from './Exercises';
 import { ExerciseHistory } from '../ExerciseHistory/ExerciseHistory';

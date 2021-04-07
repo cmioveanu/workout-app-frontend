@@ -71,7 +71,7 @@ export const RoutineHistory = () => {
                         {
                             //Filter exercises buy date and display
                             displayRoutineExercises(date).map(historyItem => (
-                                <div className={styles.historyItem} key={historyItem.date + historyItem.exercise}>
+                                <div className={styles.historyItem} key={historyItem.date + historyItem.exercise + Math.random()}>
                                     <p className={styles.exercise}>{historyItem.exercise}</p>
 
                                     <div className={styles.exerciseStats}>

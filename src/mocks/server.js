@@ -2,6 +2,7 @@ import { rest } from 'msw';
 import { setupServer } from 'msw/node'
 
 
+// Mock data
 const exercises = [
     {
         id: 80,
@@ -21,9 +22,44 @@ const exercises = [
 ];
 
 
+const routineHistory = [
+    {
+        name: "Bodyweight Pro",
+        total_time: 56,
+        date: "2021-03-29T23:00:00.000Z",
+        exercise: "Pushups",
+        time_under_load: 65,
+        negatives: 7
+    },
+    {
+        name: "Bodyweight Pro",
+        total_time: 56,
+        date: "2021-03-29T23:00:00.000Z",
+        exercise: "Pullups",
+        time_under_load: 76,
+        negatives: 8
+    },
+    {
+        name: "Bodyweight Pro",
+        total_time: 56,
+        date: "2021-03-29T23:00:00.000Z",
+        exercise: "Hanging Leg Raises",
+        time_under_load: 49,
+        negatives: 5
+    },
+    {
+        name: "Bodyweight Pro",
+        total_time: 56,
+        date: "2021-03-29T23:00:00.000Z",
+        exercise: "Pushups",
+        time_under_load: 67,
+        negatives: 9
+    }
+];
+
+
+// Server handlers
 const handlers = [
-
-
     //History route
     rest.get('/api/routines/history/:number', (req, res, ctx) => {
         return res(ctx.json([
@@ -84,6 +120,12 @@ const handlers = [
     rest.delete('/api/exercises/79', (req, res, ctx) => {
         const exercisesCopy = exercises.filter(e => e.id === 79);
         return res(ctx.json(exercisesCopy));
+    }),
+
+
+    //Routines route
+    rest.get('/api/routines/19/10', (req, res, ctx) => {
+        return res(ctx.json(routineHistory));
     }),
 
 
