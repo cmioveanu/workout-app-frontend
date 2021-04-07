@@ -1,66 +1,11 @@
 import { rest } from 'msw';
 import { setupServer } from 'msw/node'
-
-
-// Mock data
-const exercises = [
-    {
-        id: 80,
-        name: "Crunches",
-        user_id: 10
-    },
-    {
-        id: 79,
-        name: "Hanging leg raises",
-        user_id: 10
-    },
-    {
-        id: 81,
-        name: "One leg squats",
-        user_id: 10
-    }
-];
-
-
-const routineHistory = [
-    {
-        name: "Bodyweight Pro",
-        total_time: 56,
-        date: "2021-03-29T23:00:00.000Z",
-        exercise: "Pushups",
-        time_under_load: 65,
-        negatives: 7
-    },
-    {
-        name: "Bodyweight Pro",
-        total_time: 56,
-        date: "2021-03-29T23:00:00.000Z",
-        exercise: "Pullups",
-        time_under_load: 76,
-        negatives: 8
-    },
-    {
-        name: "Bodyweight Pro",
-        total_time: 56,
-        date: "2021-03-29T23:00:00.000Z",
-        exercise: "Hanging Leg Raises",
-        time_under_load: 49,
-        negatives: 5
-    },
-    {
-        name: "Bodyweight Pro",
-        total_time: 56,
-        date: "2021-03-29T23:00:00.000Z",
-        exercise: "Pushups",
-        time_under_load: 67,
-        negatives: 9
-    }
-];
+import { exercises, routinesList, routinesExList, routineHistory } from './testData';
 
 
 // Server handlers
 const handlers = [
-    //History route
+    // *** History route
     rest.get('/api/routines/history/:number', (req, res, ctx) => {
         return res(ctx.json([
             {
@@ -83,10 +28,13 @@ const handlers = [
     }),
 
 
-    //Exercises route
+    // *** Exercises route
+    //get the list of exercises
     rest.get('/api/exercises', (req, res, ctx) => {
         return res(ctx.json(exercises));
     }),
+
+    //create a new exercise
     rest.post('/api/exercises', (req, res, ctx) => {
         const { name } = req.body;
         return res(ctx.json([...exercises, {
@@ -95,6 +43,8 @@ const handlers = [
             user_id: 10
         }]));
     }),
+
+    //get the history of an exercise
     rest.get('/api/exercises/80/10', (req, res, ctx) => {
         return res(ctx.json([
             {
@@ -111,31 +61,85 @@ const handlers = [
             },
         ]));
     }),
+
+    //change the name of an exercise
     rest.put('/api/exercises/79', (req, res, ctx) => {
         const exercisesCopy = [...exercises];
         exercisesCopy[1].name = req.body.newName;
 
         return res(ctx.json(exercisesCopy));
     }),
+
+    //delete an exercise
     rest.delete('/api/exercises/79', (req, res, ctx) => {
-        const exercisesCopy = exercises.filter(e => e.id === 79);
+        const exercisesCopy = exercises.filter(e => e.id !== 79);
         return res(ctx.json(exercisesCopy));
     }),
 
 
-    //Routines route
+    // *** Routines route
+    //get the list of routines
     rest.get('/api/routines/19/10', (req, res, ctx) => {
         return res(ctx.json(routineHistory));
     }),
 
+    //create a new routine
+    rest.post('/api/routines', (req, res, ctx) => {
+        const { name } = req.body;
 
-    //Account route
+        const newRoutinesList = [...routinesList];
+        newRoutinesList.push({
+            name: name,
+            id: 100
+        });
+
+        return res(ctx.json(newRoutinesList));
+    }),
+
+    //edit name for 'Bodyweight Pro' routine
+    rest.put('/api/routines/19', (req, res, ctx) => {
+        const routinesListCopy = [...routinesList];
+        routinesListCopy[1].name = req.body.newName;
+
+        return res(ctx.json(routinesListCopy));
+    }),
+
+    //delete 'Bodyweight Pro' routine
+    rest.delete('/api/routines/19', (req, res, ctx) => {
+        const routinesListCopy = routinesList.filter(e => e.id !== 19);
+        return res(ctx.json(routinesListCopy));
+    }),
+
+    //add 'Crunches' to 'Bodyweight Full' routine
+    rest.post('/api/routines/11/85', (req, res, ctx) => {
+        const newRoutinesExList = [...routinesExList];
+        newRoutinesExList.push({
+            routine_id: 11,
+            exercise_id: 85,
+            id: 85,
+            name: 'Crunches'
+        });
+
+        return res(ctx.json(newRoutinesExList));
+    }),
+
+    //remove 'Pushups' from 'Bodyweight Full' routine
+    rest.delete('/api/routines/11/69', (req, res, ctx) => {
+        const newRoutinesExList = routinesExList.filter(ex => !(ex.routine_id === 11 && ex.id === 69));
+        return res(ctx.json(newRoutinesExList));
+    }),
+
+
+    // *** Account route
+    //log in
     rest.post('/api/account/login', (req, res, ctx) => {
         const { username, password } = req.body;
         if (username === 'TestUser' && password === 'TestPassword') {
             return res(ctx.status(200));
         }
     }),
+
+    //register
     rest.post('/api/account/register', (req, res, ctx) => {
         const users = ['test1', 'test2', 'test3'];
 
@@ -148,6 +152,8 @@ const handlers = [
             return res(ctx.status(201));
         }
     }),
+
+    //change email
     rest.put('/api/account/email', (req, res, ctx) => {
         const { password } = req.body;
         if (password === 'testPassword') {
@@ -156,6 +162,8 @@ const handlers = [
             return res(ctx.status(403));
         }
     }),
+
+    //change password
     rest.put('/api/account/password', (req, res, ctx) => {
         const { oldPassword } = req.body;
         if (oldPassword === 'testPassword') {
@@ -164,7 +172,6 @@ const handlers = [
             return res(ctx.status(403));
         }
     })
-
 ];
 
 

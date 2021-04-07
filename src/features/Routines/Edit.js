@@ -106,7 +106,7 @@ export const Edit = props => {
 
 
     //add exercise to this routine
-    const handleAddOnChange = async (exerciseID) => {
+    const addExercise = async (exerciseID) => {
         const fetchUrl = baseUrl + props.routineToEdit.id + "/" + exerciseID;
 
         const fetchOptions = {
@@ -136,8 +136,8 @@ export const Edit = props => {
                 {/* For current routine, display the corresponding exercises. */}
                 {
                     displayExercises().map(exercise => (
-                        <div className={styles.individualExContainer}>
-                            <p key={exercise.id} className={styles.individualExercises}>{exercise.name}</p>
+                        <div key={exercise.id + exercise.routine_id} className={styles.individualExContainer}>
+                            <p className={styles.individualExercises}>{exercise.name}</p>
                             <button onClick={() => removeExercise(exercise.id)}>Remove</button>
                         </div>
                     ))
@@ -152,7 +152,7 @@ export const Edit = props => {
                                 onClick={() => setSelectedExerciseID(exercise.id)}>{exercise.name}</option>
                         ))}
                     </select>
-                    <button onClick={() => handleAddOnChange(selectedExerciseID)}>Add Exercise</button>
+                    <button onClick={() => addExercise(selectedExerciseID)}>Add Exercise</button>
                 </div>
 
                 <div className={styles.buttonsContainer}>

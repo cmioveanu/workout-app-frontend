@@ -16,7 +16,7 @@ export const Routines = () => {
     const exercisesRoutines = useSelector(state => state.routines.routinesExercisesList);
 
     const [newRoutineName, setNewRoutineName] = useState("");
-    const [routineToEdit, setRoutineToEdit] = useState(null);
+    const [routineToEdit, setRoutineToEdit] = useState({ name: 'Default', id: 1 });
 
 
     //change new Routine name when typing
@@ -25,7 +25,7 @@ export const Routines = () => {
     }
 
 
-    //add Routine to database when pressing "Create new ex."
+    //add Routine to database when pressing "Create new routine"
     const handleSubmit = (event) => {
         fetch("api/routines", {
             method: 'POST',
@@ -49,8 +49,8 @@ export const Routines = () => {
 
 
     //display or hide the modal with the right Routine
-    const handleEditClick = (IDOfRoutineToEdit) => {
-        setRoutineToEdit(IDOfRoutineToEdit);
+    const handleEditClick = (routineForEdit) => {
+        setRoutineToEdit(routineForEdit);
         dispatch(toggleEditRoutinesShow());
     }
 
@@ -65,11 +65,11 @@ export const Routines = () => {
         <section className={styles.routines}>
             <div className={styles.createNew}>
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor="newRoutine">New Routine name:</label>
+                    <label htmlFor="newRoutine">New routine name:</label>
                     <br />
                     <input type="text" value={newRoutineName} onChange={handleChange} id="newRoutine" />
                     <br />
-                    <input type="submit" value="Create new Routine" className={styles.submitButton} />
+                    <input type="submit" value="Create new routine" className={styles.submitButton} />
                 </form>
             </div>
 
