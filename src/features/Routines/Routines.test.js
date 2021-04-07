@@ -8,26 +8,7 @@ import { getExercisesList } from '../Exercises/ExercisesSlice';
 import { Routines } from './Routines';
 import { RoutineHistory } from '../RoutinesHistory/RoutineHistory';
 
-
-const mockExercises = [
-    {
-        id: 85,
-        name: "Crunches",
-        user_id: 10
-    },
-
-    {
-        id: 79,
-        name: "Hanging leg raises",
-        user_id: 10
-    },
-
-    {
-        id: 81,
-        name: "One leg squats",
-        user_id: 10
-    }
-];
+import { exercises, routinesExList } from '../../mocks/testData';
 
 
 const mockRoutinesList = [
@@ -41,56 +22,11 @@ const mockRoutinesList = [
     }
 ];
 
-const mockRoutinesExList = [
-    {
-        routine_id: 19,
-        exercise_id: 69,
-        id: 69,
-        name: 'Pushups'
-    },
-    {
-        routine_id: 11,
-        exercise_id: 69,
-        id: 69,
-        name: 'Pushups'
-    },
-    {
-        routine_id: 19,
-        exercise_id: 70,
-        id: 70,
-        name: 'Pullups'
-    },
-    {
-        routine_id: 11,
-        exercise_id: 70,
-        id: 70,
-        name: 'Pullups'
-    },
-    {
-        routine_id: 19,
-        exercise_id: 81,
-        id: 81,
-        name: 'One leg squats'
-    },
-    {
-        routine_id: 11,
-        exercise_id: 80,
-        id: 80,
-        name: 'Hanging Leg Raises'
-    },
-    {
-        routine_id: 19,
-        exercise_id: 80,
-        id: 80,
-        name: 'Hanging Leg Raises'
-    }
-];
-
 
 beforeEach(() => {
-    store.dispatch(getExercisesList(mockExercises));
+    store.dispatch(getExercisesList(exercises));
     store.dispatch(getRoutinesList(mockRoutinesList));
-    store.dispatch(getRoutinesExercisesList(mockRoutinesExList));
+    store.dispatch(getRoutinesExercisesList(routinesExList));
     store.dispatch(changeActiveRoutine(mockRoutinesList[1]));
 
     render(

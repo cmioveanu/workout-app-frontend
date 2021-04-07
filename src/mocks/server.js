@@ -1,6 +1,12 @@
 import { rest } from 'msw';
 import { setupServer } from 'msw/node'
-import { exercises, routinesList, routinesExList, routineHistory } from './testData';
+import {
+    exercises,
+    routinesList,
+    routinesExList,
+    routineHistory,
+    exerciseHistory
+} from './testData';
 
 
 // Server handlers
@@ -46,20 +52,7 @@ const handlers = [
 
     //get the history of an exercise
     rest.get('/api/exercises/80/10', (req, res, ctx) => {
-        return res(ctx.json([
-            {
-                date: '2021-03-29T23:00:00.000Z',
-                name: 'Crunches',
-                time_under_load: 6,
-                negatives: 5
-            },
-            {
-                date: '2021-02-29T23:00:00.000Z',
-                name: 'Crunches',
-                time_under_load: 9,
-                negatives: 2
-            },
-        ]));
+        return res(ctx.json(exerciseHistory));
     }),
 
     //change the name of an exercise

@@ -17,6 +17,22 @@ export const exercises = [
 ];
 
 
+export const exerciseHistory = [
+    {
+        date: '2021-03-29T23:00:00.000Z',
+        name: 'Crunches',
+        time_under_load: 6,
+        negatives: 5
+    },
+    {
+        date: '2021-02-29T23:00:00.000Z',
+        name: 'Crunches',
+        time_under_load: 9,
+        negatives: 2
+    },
+];
+
+
 export const routinesList = [
     {
         name: 'Bodyweight Full',
