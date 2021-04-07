@@ -135,7 +135,7 @@ test('deletes exercise on Delete button click', async () => {
 });
 
 
-test('changes active exercise for history component', () => {
+test('changes active exercise for exercise history component', () => {
     render(
         <Provider store={store}>
             <ExerciseHistory />
