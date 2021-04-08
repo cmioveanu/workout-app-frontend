@@ -2,12 +2,9 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 
 import { Provider } from 'react-redux';
 import store from '../../app/store';
-import { getWorkoutExercises, stopTotalTime, toggleShowEditWorkout } from '../Workout/WorkoutSlice';
 import { changeActiveRoutine } from '../Routines/RoutinesSlice';
 
 import { WorkoutHistory } from './WorkoutHistory';
-
-import { workoutExercises } from '../../mocks/testData';
 
 
 beforeEach(() => {
@@ -67,8 +64,8 @@ test('changes time under load and negatives when edited in the modal', () => {
     //change the input values
     const time = screen.getByLabelText('Time under load in seconds:');
     const negatives = screen.getByLabelText('Negatives:');
-    fireEvent.change(time, {target: {value: 333}});
-    fireEvent.change(negatives, {target: {value: 555}});
+    fireEvent.change(time, { target: { value: 333 } });
+    fireEvent.change(negatives, { target: { value: 555 } });
 
     //close and register the changes
     const done = screen.getByText('Done');
@@ -79,6 +76,40 @@ test('changes time under load and negatives when edited in the modal', () => {
 });
 
 
-test('records the workout and resets to 0', () => {
+test('records the workout and resets to 0', async () => {
+    //open the Edit modal for third exercise('Pullups)
+    const editButtons = screen.getAllByText('Edit');
+    const firstEdit = editButtons[2];
+    fireEvent.click(firstEdit);
 
+    //change the input values
+    const time = screen.getByLabelText('Time under load in seconds:');
+    const negatives = screen.getByLabelText('Negatives:');
+    fireEvent.change(time, { target: { value: 333 } });
+    fireEvent.change(negatives, { target: { value: 555 } });
+
+    //close and register the changes
+    const done = screen.getByText('Done');
+    fireEvent.click(done);
+
+    //record the workout
+    const record = screen.getByText('Record workout');
+    fireEvent.click(record);
+
+
+    const textAlert = screen.getByTestId('workoutAlert');
+    await waitFor(() => {
+        expect(textAlert.textContent).toBe('Workout recorded!');
+    });
+});
+
+
+test('does not record the workout if no exercises changed', async () => {
+    const record = screen.getByText('Record workout');
+    fireEvent.click(record);
+
+    await waitFor(() => {
+        const textAlert = screen.getByTestId('workoutAlert');
+        expect(textAlert.textContent).toBe('Workout was not recorded. Try again!');
+    });
 });

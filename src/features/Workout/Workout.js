@@ -155,7 +155,11 @@ export const Workout = () => {
                 {routinesList.length === 0 ? 'No workouts available yet.' : null}
                 <select className={styles.workoutTitle}>
                     {routinesList.map(routine => (
-                        <option key={routine.id} value={routine.name} onClick={() => handleRoutineChange(routine)}>{routine.name}</option>
+                        <option 
+                        key={routine.id} 
+                        value={routine.name} 
+                        data-testid="routineTitle"
+                        onClick={() => handleRoutineChange(routine)}>{routine.name}</option>
                     ))}
                 </select>
             </h2>
@@ -171,9 +175,9 @@ export const Workout = () => {
             {
                 routinesList.length === 0 ? null : <div className={styles.buttonsContainer}>
                     <div id={styles.exerciseSelector}>
-                        <button onClick={indexIncrease}>{"<"}</button>
+                        <button onClick={indexDecrease}>{"<"}</button>
                         <h2>{selectedExercise.name}</h2>
-                        <button onClick={indexDecrease}>{">"}</button>
+                        <button onClick={indexIncrease}>{">"}</button>
                     </div>
 
                     <div>
@@ -183,7 +187,7 @@ export const Workout = () => {
 
                     <div className={styles.negatives}>
                         <button onClick={addMoreNegatives}>Add negatives</button>
-                        <input type="text" onChange={handleNegativesChange} />
+                        <input type="text" onChange={handleNegativesChange} data-testid="negativesInput"/>
                     </div>
                 </div>
             }

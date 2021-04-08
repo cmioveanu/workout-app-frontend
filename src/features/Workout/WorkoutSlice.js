@@ -39,6 +39,9 @@ export const workoutSlice = createSlice({
         stopTotalTime: (state) => {
             state.totalTimerActive = false;
         },
+        resetTotalTime: (state) => {
+            state.totalTime = 0;
+        },
         updateTotalTime: (state) => {
             state.totalTime += 1;
         },
@@ -49,5 +52,5 @@ export const workoutSlice = createSlice({
 });
 
 export const { getWorkoutExercises, changeTUL, changeNegatives, addNegatives,
-    startTotalTime, stopTotalTime, updateTotalTime, toggleShowEditWorkout } = workoutSlice.actions;
+    startTotalTime, stopTotalTime, updateTotalTime, resetTotalTime, toggleShowEditWorkout } = workoutSlice.actions;
 export default workoutSlice.reducer;

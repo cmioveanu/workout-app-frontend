@@ -16,7 +16,16 @@ const handlers = [
     rest.get('/api/workout/19', (req, res, ctx) => {
         return res(ctx.json(workoutExercises));
     }),
-
+    rest.post('/api/workout', (req, res, ctx) => {
+        const { exercises } = req.body;
+        const recordPermission = exercises.some(exercise => exercise.timeUnderLoad > 0);
+        
+        if(recordPermission) {
+            return res(ctx.status(201));
+        } else {
+            return res(ctx.status(403));
+        }
+    }),
 
 
     // *** History route

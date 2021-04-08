@@ -2,14 +2,17 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './WorkoutHistory.module.css';
 
-import { getWorkoutExercises, stopTotalTime, toggleShowEditWorkout } from '../Workout/WorkoutSlice';
+import { getWorkoutExercises, stopTotalTime, resetTotalTime, toggleShowEditWorkout } from '../Workout/WorkoutSlice';
 import { Edit } from './Edit';
 
 export const WorkoutHistory = () => {
     const activeRoutine = useSelector(state => state.routines.activeRoutine);
     const workoutExercises = useSelector(state => state.workout.workoutExercises);
     const totalWorkTime = useSelector(state => state.workout.totalTime);
+
     const [exerciseToEdit, setExerciseToEdit] = useState(null);
+    const [messageAlert, setMessageAlert] = useState("");
+
     const dispatch = useDispatch();
 
     const baseUrl = "api/workout/";
@@ -54,8 +57,16 @@ export const WorkoutHistory = () => {
             }
         };
 
-        fetch(baseUrl, fetchOptions);
-    }
+        fetch(baseUrl, fetchOptions).then(res => {
+            if (res.status === 201) {
+                setMessageAlert('Workout recorded!');
+            } else {
+                setMessageAlert('Workout was not recorded. Try again!');
+            }
+        });
+
+        dispatch(resetTotalTime(0));
+    };
 
 
     //open edit modal
@@ -74,7 +85,7 @@ export const WorkoutHistory = () => {
             }
             {
                 workoutExercises.map(exercise => (
-                    <div key={exercise.id}>
+                    <div key={exercise.id + "" + Math.random()}>
                         <h3>{exercise.name}</h3>
                         <div className={styles.exerciseStatsContainer}>
                             <div>
@@ -88,7 +99,7 @@ export const WorkoutHistory = () => {
             }
 
             <button id={styles.completeButton} onClick={recordWorkout}>Record workout</button>
-
+            <p className={styles.alert} data-testid="workoutAlert">{messageAlert}</p>
             {/* Edit component as modal, with the ID of the Routine
                 that needs to be edited/deleted in the database */}
             <Edit exerciseToEdit={exerciseToEdit} />
