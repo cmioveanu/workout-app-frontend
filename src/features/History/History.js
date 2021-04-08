@@ -59,7 +59,7 @@ export const History = () => {
             {
                 datesNamesHistory.map(dateName => (
                     /* Take the RoutineHistory from local state and map it for display*/
-                    <div key={datesNamesHistory.indexOf(dateName)}>
+                    <div key={datesNamesHistory.indexOf(dateName)} className={styles.historyContainer}>
                         <h3 className={styles.historyDate}>{dateConverter(dateName.date)}</h3>
                         <h2 className={styles.historyName}>{dateName.name}</h2>
                         {
