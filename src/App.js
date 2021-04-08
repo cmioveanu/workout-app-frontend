@@ -23,11 +23,22 @@ import { LandingPage } from './features/LandingPage/LandingPage';
 //import action creators
 import { getRoutinesList, getRoutinesExercisesList, changeActiveRoutine } from './features/Routines/RoutinesSlice';
 import { getExercisesList, changeActiveExercise } from './features/Exercises/ExercisesSlice';
+import { logIn } from './features/Login/LoginSlice';
 
 
 const App = () => {
   const dispatch = useDispatch();
   const loggedIn = useSelector(state => state.login.loggedIn);
+
+  useEffect(() => {
+    //if user is logged in on the server, set the state as logged in
+    fetch('api/account/checkLoginStatus').then(res => {
+        if (res.status === 200 || res.status === 304) {
+            dispatch(logIn());
+        }
+    });
+}, [dispatch]);
+
 
   //get Routines and set first index as active routine when component mounts
   useEffect(() => {
@@ -38,6 +49,7 @@ const App = () => {
       dispatch(getRoutinesList(jsonRoutines));
       dispatch(changeActiveRoutine(jsonRoutines[0]));
     };
+
     if (loggedIn) {
       getRoutines();
     }

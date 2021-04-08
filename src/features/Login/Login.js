@@ -1,17 +1,23 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './Login.module.css';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 
 import { logIn } from './LoginSlice';
 
 
 export const Login = () => {
+    const loggedIn = useSelector(state => state.login.loggedIn);
+
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     const dispatch = useDispatch();
     const history = useHistory();
+
+    if (loggedIn) {
+        return <Redirect to="/workout" />;
+    }
 
 
     //login and if successful, redirect to workout page
@@ -28,7 +34,7 @@ export const Login = () => {
                 password: password
             })
         }).then(res => {
-            if(res.status === 200) {
+            if (res.status === 200) {
                 dispatch(logIn());
                 history.push('/workout');
             }

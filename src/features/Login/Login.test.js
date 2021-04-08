@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
 import store from '../../app/store';
+import { logOut } from './LoginSlice';
 
 import { Login } from './Login';
 import { Header } from '../Header/Header';
@@ -41,6 +42,8 @@ test('logs in if username and password valid', async () => {
         expect(exerciseLink).toBeInTheDocument();
     })
 
+    //log back out after testing
+    store.dispatch(logOut());
 });
 
 
