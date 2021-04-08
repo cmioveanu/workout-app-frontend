@@ -5,7 +5,7 @@ import { dateConverter } from '../../utils/helpers';
 
 
 export const History = () => {
-    const [numberOfHistoryRows, setNumberOfHistoryRows] = useState(10);
+    const [numberOfHistoryRows, setNumberOfHistoryRows] = useState(50);
     const [routineHistory, setRoutineHistory] = useState([]);
     const [datesNamesHistory, setDatesNamesHistory] = useState([]);
 
