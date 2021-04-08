@@ -177,9 +177,6 @@ test('removes exercise from routine', async () => {
 });
 
 
-
-
-
 test('changes active routine for routine history component', () => {
     render(
         <Provider store={store}>
