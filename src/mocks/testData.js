@@ -125,3 +125,33 @@ export const routineHistory = [
         negatives: 9
     }
 ];
+
+
+export const workoutExercises = [
+    {
+        name: 'Hanging Leg Raises',
+        id: 128,
+        timeUnderLoad: 0,
+        negatives: 0
+    },
+    {
+        name: 'One leg squats',
+        id: 127,
+        timeUnderLoad: 0,
+        negatives: 0
+    },
+    {
+        name: 'Pullups',
+        id: 124,
+        timeUnderLoad: 0,
+        negatives: 0
+    },
+    {
+        name: 'Pushups',
+        id: 125,
+        timeUnderLoad: 0,
+        negatives: 0
+    },
+
+  
+];
