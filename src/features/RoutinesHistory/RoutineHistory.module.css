@@ -45,6 +45,7 @@
 .historyItem .exercise {
     font-weight: 500;
     color: #2fd5cd;
+    min-width: 140px;
 }
 
 .historyItem .timeAndNegative {
@@ -69,10 +70,9 @@
 
 
 /* Media queries */
-@media (max-width: 610px) {
+@media (min-width: 731px) and (max-width: 1199px), (max-width: 610px) {
     .historyItem {
         flex-flow: column;
-        margin-bottom: 1.5rem;
         padding-bottom: 0.5rem;
     }
 
