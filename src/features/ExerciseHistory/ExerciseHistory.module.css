@@ -38,7 +38,6 @@
 .historyItem .timeAndNegative {
     text-transform: uppercase;
     color:#2fd5cd;
-    margin-left: 2rem;
 }
 
 .historyItem .timeAndNegative span {
@@ -60,8 +59,20 @@
 
 /* Media Queries */
 
-@media only screen and (max-width: 730px) {
+@media (max-width: 730px) {
     .exerciseHistoryTitle {
         margin-top: 1rem;
+    }
+}
+
+@media (min-width: 731px) and (max-width: 1100px), (max-width: 500px) {
+    .historyItem {
+        flex-flow: column;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .historyItem p {
+        margin: 0.5rem 0 0.5rem 0;
     }
 }

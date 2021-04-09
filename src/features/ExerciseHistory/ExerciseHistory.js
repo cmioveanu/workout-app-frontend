@@ -24,7 +24,7 @@ export const ExerciseHistory = () => {
         };
 
         fetchExerciseHistory();
-        
+
     }, [activeExercise, numberOfHistoryRows]);
 
 
@@ -48,14 +48,12 @@ export const ExerciseHistory = () => {
                     exerciseHistory.map(historyItem => (
                         <div className={styles.historyItem} key={historyItem.date}>
                             <p className={styles.date}>{dateConverter(historyItem.date)}</p>
-                            <div className={styles.exerciseStats}>
-                                <p className={styles.timeAndNegative}>Time under load: <span>{historyItem.time_under_load}s</span></p>
-                                <p className={styles.timeAndNegative}>Negatives: <span>
-                                    {/* add space when negatives < 10 for display purposes */}
-                                    {historyItem.negatives < 10 ? <span className={styles.spanPadding}></span> : null}
-                                    {historyItem.negatives}</span>
-                                </p>
-                            </div>
+                            <p className={styles.timeAndNegative}>Time under load: <span>{historyItem.time_under_load}s</span></p>
+                            <p className={styles.timeAndNegative}>Negatives: <span>
+                                {/* add space when negatives < 10 for display purposes */}
+                                {historyItem.negatives < 10 ? <span className={styles.spanPadding}></span> : null}
+                                {historyItem.negatives}</span>
+                            </p>
                         </div>
                     ))
                 }

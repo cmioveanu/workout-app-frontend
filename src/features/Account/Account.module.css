@@ -67,4 +67,8 @@
         width: 100%;
         margin-bottom: 3rem;
     }
+
+    .formsContainer form input {
+        min-width: 0;
+    }
 }
