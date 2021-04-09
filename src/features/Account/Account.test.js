@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { Account } from './Account';
 
 
@@ -38,20 +38,16 @@ const passwordChecks = (oldPass, newPass, newPassConfirm) => {
 test('changes email when password correct', async () => {
     emailChecks('testPassword', 'test1@gmail.com', 'test1@gmail.com');
 
-    await waitFor(() => {
-        const textAlert = screen.getByText('Email changed.');
-        expect(textAlert).toBeInTheDocument();
-    });
+    const textAlert = await screen.findByText('Email changed.');
+    expect(textAlert).toBeInTheDocument();
 });
 
 
 test('displays error if password is wrong for email change', async () => {
     emailChecks('wrongPassword', 'test1@gmail.com', 'test1@gmail.com');
 
-    await waitFor(() => {
-        const textAlert = screen.getByText('Unable to change email. Please try again!');
-        expect(textAlert).toBeInTheDocument();
-    });
+    const textAlert = await screen.findByText('Unable to change email. Please try again!');
+    expect(textAlert).toBeInTheDocument();
 });
 
 
@@ -66,20 +62,16 @@ test('displays error if emails don\'t match', () => {
 test('changes password when old password is correct', async () => {
     passwordChecks('testPassword', 'newPassword', 'newPassword');
 
-    await waitFor(() => {
-        const textAlert = screen.getByText('Password changed.');
-        expect(textAlert).toBeInTheDocument();
-    });
+    const textAlert = await screen.findByText('Password changed.');
+    expect(textAlert).toBeInTheDocument();
 });
 
 
 test('displays error if old password is wrong for password change', async () => {
     passwordChecks('wrongPassword', 'newPassword', 'newPassword');
 
-    await waitFor(() => {
-        const textAlert = screen.getByText('Unable to change password. Please try again!');
-        expect(textAlert).toBeInTheDocument();
-    });
+    const textAlert = await screen.findByText('Unable to change password. Please try again!');
+    expect(textAlert).toBeInTheDocument();
 });
 
 

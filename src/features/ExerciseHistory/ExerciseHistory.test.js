@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import { Provider } from 'react-redux';
 import store from '../../app/store';
@@ -20,16 +20,14 @@ test('renders history of the active exercise', async () => {
         </Provider>
     );
 
-    await waitFor(() => {
-        const date1 = screen.getByText('29 March 2021');
-        const date2 = screen.getByText('29 February 2021');
-        expect(date1).toBeInTheDocument();
-        expect(date2).toBeInTheDocument();
+    const date1 = await screen.findByText('29 March 2021');
+    const date2 = await screen.findByText('29 February 2021');
+    expect(date1).toBeInTheDocument();
+    expect(date2).toBeInTheDocument();
 
-        const timeUnderLoad = screen.getAllByText('Time under load:');
-        const negatives = screen.getAllByText('Negatives:');
-        expect(timeUnderLoad.length).toBe(2);
-        expect(negatives.length).toBe(2);
-    });
+    const timeUnderLoad = await screen.findAllByText('Time under load:');
+    const negatives = await screen.findAllByText('Negatives:');
+    expect(timeUnderLoad.length).toBe(2);
+    expect(negatives.length).toBe(2);
 });
 

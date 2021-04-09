@@ -2,7 +2,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 
 import { Provider } from 'react-redux';
 import store from '../../app/store';
-import { changeActiveRoutine, getRoutinesList, getRoutinesExercisesList } from '../Routines/RoutinesSlice';
+import { getRoutinesList, getRoutinesExercisesList } from '../Routines/RoutinesSlice';
 import { getWorkoutExercises } from '../Workout/WorkoutSlice';
 
 import { Workout } from './Workout';

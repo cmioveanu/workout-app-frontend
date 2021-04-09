@@ -2,25 +2,17 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 
 import { Provider } from 'react-redux';
 import store from '../../app/store';
-import { changeActiveRoutine, getRoutinesList, getRoutinesExercisesList, toggleEditRoutinesShow } from '../Routines/RoutinesSlice';
+import {
+    changeActiveRoutine,
+    getRoutinesList,
+    getRoutinesExercisesList
+} from '../Routines/RoutinesSlice';
 import { getExercisesList } from '../Exercises/ExercisesSlice';
 
 import { Routines } from './Routines';
 import { RoutineHistory } from '../RoutinesHistory/RoutineHistory';
 
-import { exercises, routinesExList } from '../../mocks/testData';
-
-
-const mockRoutinesList = [
-    {
-        name: 'Bodyweight Full',
-        id: 11
-    },
-    {
-        name: 'Bodyweight Pro',
-        id: 19
-    }
-];
+import { exercises, mockRoutinesList, routinesExList } from '../../mocks/testData';
 
 
 beforeEach(() => {
@@ -64,9 +56,8 @@ test('creates new routines', async () => {
 
     fireEvent.click(createButton);
 
-    await waitFor(() => {
-        expect(screen.getByText('Machines full')).toBeInTheDocument();
-    })
+    const routine = await screen.findByText('Machines full');
+    expect(routine).toBeInTheDocument();
 });
 
 
@@ -104,10 +95,8 @@ test('edits routine name when new name typed in', async () => {
     fireEvent.change(input, { target: { value: 'Bodyweight Legend' } });
     fireEvent.click(doneButton);
 
-    await waitFor(() => {
-        const newRoutineName = screen.getByText('Bodyweight Legend');
-        expect(newRoutineName).toBeInTheDocument();
-    });
+    const newRoutineName = await screen.findByText('Bodyweight Legend');
+    expect(newRoutineName).toBeInTheDocument();
 });
 
 
@@ -145,9 +134,8 @@ test('selects exercise and adds exercise to routine', async () => {
     const doneButton = screen.getByText('Done');
     fireEvent.click(doneButton);
 
-    await waitFor(() => {
-        expect(screen.getByText('Crunches')).toBeInTheDocument();
-    });
+    const crunches = await screen.findByText('Crunches');
+    expect(crunches).toBeInTheDocument();
 });
 
 
@@ -170,10 +158,8 @@ test('removes exercise from routine', async () => {
     const doneButton = screen.getByText('Done');
     fireEvent.click(doneButton);
 
-    await waitFor(() => {
-        const pushups = screen.getAllByText('Pushups');
-        expect(pushups.length).toBe(1);
-    });
+    const pushups = await screen.findAllByText('Pushups');
+    waitFor(() => expect(pushups.length).toBe(1));
 });
 
 

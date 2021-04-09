@@ -98,9 +98,7 @@ test('records the workout and resets to 0', async () => {
 
 
     const textAlert = screen.getByTestId('workoutAlert');
-    await waitFor(() => {
-        expect(textAlert.textContent).toBe('Workout recorded!');
-    });
+    await waitFor(() => expect(textAlert.textContent).toBe('Workout recorded!'));
 });
 
 
@@ -108,8 +106,6 @@ test('does not record the workout if no exercises changed', async () => {
     const record = screen.getByText('Record workout');
     fireEvent.click(record);
 
-    await waitFor(() => {
-        const textAlert = screen.getByTestId('workoutAlert');
-        expect(textAlert.textContent).toBe('Workout was not recorded. Try again!');
-    });
+    const textAlert = screen.getByTestId('workoutAlert');
+    await waitFor(() => expect(textAlert.textContent).toBe('Workout was not recorded. Try again!'));
 });

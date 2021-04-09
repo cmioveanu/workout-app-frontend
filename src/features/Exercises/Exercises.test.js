@@ -7,27 +7,12 @@ import { getExercisesList, changeActiveExercise } from '../Exercises/ExercisesSl
 import { Exercises } from './Exercises';
 import { ExerciseHistory } from '../ExerciseHistory/ExerciseHistory';
 
+import { mockExercises } from '../../mocks/testData';
 
 //add mock exercises and active exercise to the store, then render component
-beforeEach(() => {
-    const mockExercises = [
-        {
-            id: 80,
-            name: "Crunches",
-            user_id: 10
-        },
-        {
-            id: 79,
-            name: "Hanging leg raises",
-            user_id: 10
-        },
-        {
-            id: 81,
-            name: "One leg squats",
-            user_id: 10
-        }
-    ];
 
+
+beforeEach(() => {
     store.dispatch(getExercisesList(mockExercises));
     store.dispatch(changeActiveExercise(mockExercises[0]));
 
@@ -49,7 +34,7 @@ test('renders exercises', () => {
 });
 
 
-test('renders history and edit buttons for all exercises', async () => {
+test('renders history and edit buttons for all exercises', () => {
     const historyButtons = screen.getAllByText('History');
     const editButtons = screen.getAllByText('Edit');
 
@@ -67,9 +52,8 @@ test('creates new exercise', async () => {
 
     fireEvent.click(createButton);
 
-    await waitFor(() => {
-        expect(screen.getByText('Chinups')).toBeInTheDocument();
-    })
+    const chinups = await screen.findByText('Chinups')
+    expect(chinups).toBeInTheDocument();
 });
 
 
@@ -107,10 +91,8 @@ test('edits exercise name when new name typed in', async () => {
     fireEvent.change(input, { target: { value: 'Wide Pullups' } });
     fireEvent.click(doneButton);
 
-    await waitFor(() => {
-        const newExerciseName = screen.getByText('Wide Pullups');
-        expect(newExerciseName).toBeInTheDocument();
-    });
+    const newExerciseName = await screen.findByText('Wide Pullups');
+    expect(newExerciseName).toBeInTheDocument();
 });
 
 

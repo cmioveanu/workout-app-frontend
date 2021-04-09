@@ -17,6 +17,25 @@ export const exercises = [
 ];
 
 
+export const mockExercises = [
+    {
+        id: 80,
+        name: "Crunches",
+        user_id: 10
+    },
+    {
+        id: 79,
+        name: "Hanging leg raises",
+        user_id: 10
+    },
+    {
+        id: 81,
+        name: "One leg squats",
+        user_id: 10
+    }
+];
+
+
 export const exerciseHistory = [
     {
         date: '2021-03-29T23:00:00.000Z',
@@ -34,6 +53,18 @@ export const exerciseHistory = [
 
 
 export const routinesList = [
+    {
+        name: 'Bodyweight Full',
+        id: 11
+    },
+    {
+        name: 'Bodyweight Pro',
+        id: 19
+    }
+];
+
+
+export const mockRoutinesList = [
     {
         name: 'Bodyweight Full',
         id: 11

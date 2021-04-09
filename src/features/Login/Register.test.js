@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
@@ -29,10 +29,8 @@ test('registers new user if username available and passwords match', async () =>
     fireEvent.change(confirmPassword, { target: { value: 'TestPassword' } });
     fireEvent.click(registerButton);
 
-    await waitFor(() => {
-        const userCreated = screen.getByText('User created, you can log in now.');
-        expect(userCreated).toBeInTheDocument();
-    });
+    const userCreated = await screen.findByText('User created, you can log in now.');
+    expect(userCreated).toBeInTheDocument();
 });
 
 
@@ -63,10 +61,8 @@ test('renders error if username already exists', async () => {
     fireEvent.change(confirmPassword, { target: { value: 'TestPassword' } });
     fireEvent.click(registerButton);
 
-    await waitFor(() => {
-        const error = screen.getByText('Email already exists. Please log in.');
-        expect(error).toBeInTheDocument();
-    });
+    const error = await screen.findByText('Email already exists. Please log in.');
+    expect(error).toBeInTheDocument();
 });
 
 

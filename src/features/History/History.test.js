@@ -1,42 +1,43 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { History } from './History';
 
 
 test('renders all history', async () => {
     render(<History />);
 
-    await waitFor(() => {
-        const numberOfDates = screen.getAllByRole('heading', { level: 3 });
-        const numberOfTitles = screen.getAllByRole('heading', { level: 2 });
-        expect(numberOfDates.length).toBe(2);
-        expect(numberOfTitles.length).toBe(2);
-    });
+    const numberOfDates = await screen.findAllByRole('heading', { level: 3 });
+    const numberOfTitles = await screen.findAllByRole('heading', { level: 2 });
+    expect(numberOfDates.length).toBe(2);
+    expect(numberOfTitles.length).toBe(2);
 });
 
 
 test('renders names and dates', async () => {
     render(<History />);
 
-    await waitFor(() => {
-        expect(screen.getByText("Bodyweight Pro")).toBeInTheDocument();
-        expect(screen.getByText("29 March 2021")).toBeInTheDocument();
-        expect(screen.getByText("Machines Full")).toBeInTheDocument();
-        expect(screen.getByText("29 April 2021")).toBeInTheDocument();
-    });
+    const firstRoutine = await screen.findByText("Bodyweight Pro");
+    const firstDate = await screen.findByText("29 March 2021");
+    const secondRoutine = await screen.findByText("Machines Full");
+    const secondDate = await screen.findByText("29 April 2021");
+
+    expect(firstRoutine).toBeInTheDocument();
+    expect(firstDate).toBeInTheDocument();
+    expect(secondRoutine).toBeInTheDocument();
+    expect(secondDate).toBeInTheDocument();
 });
 
 
 test('renders individual exercise history', async () => {
     render(<History />);
 
-    await waitFor(() => {
-        const numberOfTUL = screen.getAllByText("Time under load:");
-        const negatives = screen.getAllByText("Negatives:");
+    const numberOfTUL = await screen.findAllByText("Time under load:");
+    const negatives = await screen.findAllByText("Negatives:");
 
-        expect(numberOfTUL.length).toBe(2);
-        expect(negatives.length).toBe(2);
+    expect(numberOfTUL.length).toBe(2);
+    expect(negatives.length).toBe(2);
 
-        expect(screen.getByText("Crunches")).toBeInTheDocument();
-        expect(screen.getByText("Pushups")).toBeInTheDocument();
-    });
+    const crunches = await screen.findByText("Crunches");
+    const pushups = await screen.findByText("Pushups");
+    expect(crunches).toBeInTheDocument();
+    expect(pushups).toBeInTheDocument();
 });

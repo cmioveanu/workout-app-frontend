@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
@@ -35,12 +35,10 @@ test('logs in if username and password valid', async () => {
     fireEvent.click(login);
 
     //expecting links to be displayed, because user is now logged in
-    await waitFor(() => {
-        const workoutLink = screen.getByText('Work out');
-        const exerciseLink = screen.getByText('Exercises');
-        expect(workoutLink).toBeInTheDocument();
-        expect(exerciseLink).toBeInTheDocument();
-    })
+    const workoutLink = await screen.findByText('Work out');
+    const exerciseLink = await screen.findByText('Exercises');
+    expect(workoutLink).toBeInTheDocument();
+    expect(exerciseLink).toBeInTheDocument();
 
     //log back out after testing
     store.dispatch(logOut());
