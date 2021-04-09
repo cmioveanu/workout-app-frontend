@@ -7,7 +7,7 @@ import { logIn } from '../Login/LoginSlice';
 import { Header } from './Header';
 
 
-test('renders logo', () => {
+beforeEach(() => {
     render(
         <BrowserRouter>
             <Provider store={store}>
@@ -15,21 +15,15 @@ test('renders logo', () => {
             </Provider>
         </BrowserRouter>
     );
+});
 
+test('renders logo', () => {
     const heading = screen.getByRole('heading');
     expect(heading).toBeInTheDocument();
 });
 
 
 test('only landing page, login and account links render correctly when logged out', () => {
-    render(
-        <BrowserRouter>
-            <Provider store={store}>
-                <Header />
-            </Provider>
-        </BrowserRouter>
-    );
-
     const links = screen.getAllByRole('link');
     const logoLink = links[0];
     const loginLink = links[1];
@@ -43,14 +37,6 @@ test('only landing page, login and account links render correctly when logged ou
 
 
 test('workout related links are rendered correctly after login', () => {
-    render(
-        <BrowserRouter>
-            <Provider store={store}>
-                <Header />
-            </Provider>
-        </BrowserRouter>
-    );
-
     store.dispatch(logIn());
 
     const links = screen.getAllByRole('link');
@@ -70,14 +56,6 @@ test('workout related links are rendered correctly after login', () => {
 
 
 test('log out link renders and works correctly after login', () => {
-    render(
-        <BrowserRouter>
-            <Provider store={store}>
-                <Header />
-            </Provider>
-        </BrowserRouter>
-    );
-
     store.dispatch(logIn());
 
     const links = screen.getAllByRole('link');
@@ -91,3 +69,19 @@ test('log out link renders and works correctly after login', () => {
     expect(loginLink.textContent).toBe('Login');
 });
 
+
+test('opens and closes mobile menu', () => {
+    const button = screen.getByTestId('openMenuButton');
+    fireEvent.click(button);
+
+    //two Account links, the regular one, and the one in the modal
+    const accountTexts = screen.getAllByText('Account');
+    expect(accountTexts.length).toBe(2);
+
+    const closeButton = screen.getByText('X');
+    expect(closeButton).toBeInTheDocument();
+    fireEvent.click(closeButton);
+    
+    //modal is closed, so the button is unavailable
+    expect(screen.queryByText('X')).toBeNull();
+});

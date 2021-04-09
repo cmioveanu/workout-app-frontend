@@ -26,7 +26,6 @@ export const Header = () => {
     }
 
 
-
     return (
         <header>
             <nav className={styles.mainNav}>
@@ -55,6 +54,7 @@ export const Header = () => {
                     viewBox="0 0 100 80"
                     width="40"
                     height="40"
+                    data-testid="openMenuButton"
                     onClick={() => setMenuOpen(true)}
                 >
                     <rect width="100" height="10"></rect>
