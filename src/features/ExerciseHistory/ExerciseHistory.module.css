@@ -33,6 +33,7 @@
 
 .historyItem .date {
     font-style: italic;
+    min-width: 100px;
 }
 
 .historyItem .timeAndNegative {
