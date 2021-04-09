@@ -66,3 +66,21 @@
 .spanPadding {
     padding-left: 9px;
 }
+
+
+/* Media queries */
+@media (max-width: 610px) {
+    .historyItem {
+        flex-flow: column;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .historyItem .exercise {
+        color: #333;
+    }
+
+    .historyItem p {
+        margin: 0.5rem 0 0.5rem 0;
+    }
+}
