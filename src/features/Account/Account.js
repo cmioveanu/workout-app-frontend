@@ -18,7 +18,7 @@ export const Account = () => {
         event.preventDefault();
 
         if (newEmail === emailConfirm) {
-            fetch('api/account/email', {
+            fetch('https://full-stack-e-commerce-backend.herokuapp.com/api/account/email', {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json',
@@ -46,7 +46,7 @@ export const Account = () => {
         event.preventDefault();
 
         if (newPassword === passwordConfirm) {
-            fetch('api/account/password', {
+            fetch('https://full-stack-e-commerce-backend.herokuapp.com/api/account/password', {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'

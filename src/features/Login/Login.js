@@ -24,7 +24,7 @@ export const Login = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        fetch('api/account/login', {
+        fetch('https://full-stack-e-commerce-backend.herokuapp.com/api/account/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

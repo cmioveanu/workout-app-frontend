@@ -15,7 +15,7 @@ export const WorkoutHistory = () => {
 
     const dispatch = useDispatch();
 
-    const baseUrl = "api/workout/";
+    const baseUrl = "https://full-stack-e-commerce-backend.herokuapp.com/api/workout/";
 
 
     //get the exercises for currently selected Routine

@@ -16,7 +16,7 @@ export const Register = () => {
         event.preventDefault();
 
         if (password === passwordConfirm) {
-            fetch('api/account/register', {
+            fetch('https://full-stack-e-commerce-backend.herokuapp.com/api/account/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -14,7 +14,7 @@ export const ExerciseHistory = () => {
     //get the history of the exercise when component is mounted
     useEffect(() => {
         const fetchExerciseHistory = async () => {
-            const baseUrl = "/api/exercises/";
+            const baseUrl = "https://full-stack-e-commerce-backend.herokuapp.com/api/exercises/";
             const fetchUrl = baseUrl + activeExercise.id + `/${numberOfHistoryRows}`;
 
             const exerciseHistoryResults = await fetch(fetchUrl);

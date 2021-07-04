@@ -15,7 +15,7 @@ export const Header = () => {
 
     //log out and redirect to login page
     const handleLogoutClick = () => {
-        fetch('api/account/logout');
+        fetch('https://full-stack-e-commerce-backend.herokuapp.com/api/account/logout');
         dispatch(logOut());
         setMenuOpen(false);
     }

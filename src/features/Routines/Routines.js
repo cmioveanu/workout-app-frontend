@@ -27,7 +27,7 @@ export const Routines = () => {
 
     //add Routine to database when pressing "Create new routine"
     const handleSubmit = (event) => {
-        fetch("api/routines", {
+        fetch("https://full-stack-e-commerce-backend.herokuapp.com/api/routines", {
             method: 'POST',
             body: JSON.stringify({ "name": newRoutineName }),
             headers: {
