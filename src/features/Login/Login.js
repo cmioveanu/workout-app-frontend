@@ -24,7 +24,7 @@ export const Login = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        fetch('https://full-stack-e-commerce-backend.herokuapp.com/api/account/login', {
+        fetch('https://hit-workout-app-backend.herokuapp.com/api/account/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

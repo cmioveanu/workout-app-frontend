@@ -13,7 +13,7 @@ export const History = () => {
     //get the history when component is mounted
     useEffect(() => {
         const fetchRoutineHistory = async () => {
-            const baseUrl = "https://full-stack-e-commerce-backend.herokuapp.com/api/routines/";
+            const baseUrl = "https://hit-workout-app-backend.herokuapp.com/api/routines/";
 
             const fetchUrl = baseUrl + "history/" + numberOfHistoryRows;
 

@@ -23,7 +23,7 @@ export const Exercises = () => {
 
     //add exercise to database when pressing "Create new ex."
     const handleSubmit = (event) => {
-        fetch("https://full-stack-e-commerce-backend.herokuapp.com/api/exercises", {
+        fetch("https://hit-workout-app-backend.herokuapp.com/api/exercises", {
             method: 'POST',
             body: JSON.stringify({ "name": newExerciseName }),
             headers: {

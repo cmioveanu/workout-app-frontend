@@ -16,7 +16,7 @@ export const RoutineHistory = () => {
     //get the history of the Routine when component is mounted
     useEffect(() => {
         const fetchRoutineHistory = async () => {
-            const baseUrl = "https://full-stack-e-commerce-backend.herokuapp.com/api/routines/";
+            const baseUrl = "https://hit-workout-app-backend.herokuapp.com/api/routines/";
             const fetchUrl = baseUrl + activeRoutine.id + `/${numberOfHistoryRows}`;
 
             const routineHistoryResults = await fetch(fetchUrl);
