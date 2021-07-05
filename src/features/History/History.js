@@ -13,7 +13,7 @@ export const History = () => {
     //get the history when component is mounted
     useEffect(() => {
         const fetchRoutineHistory = async () => {
-            const baseUrl = "api/routines/";
+            const baseUrl = "http://workoutapp.club/api/routines/";
 
             const fetchUrl = baseUrl + "history/" + numberOfHistoryRows;
 

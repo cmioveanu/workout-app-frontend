@@ -18,7 +18,7 @@ export const Account = () => {
         event.preventDefault();
 
         if (newEmail === emailConfirm) {
-            fetch('api/account/email', {
+            fetch('http://workoutapp.club/api/account/email', {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json',
@@ -46,7 +46,7 @@ export const Account = () => {
         event.preventDefault();
 
         if (newPassword === passwordConfirm) {
-            fetch('api/account/password', {
+            fetch('http://workoutapp.club/api/account/password', {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'

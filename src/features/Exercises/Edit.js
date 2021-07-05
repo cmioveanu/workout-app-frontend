@@ -9,7 +9,7 @@ export const Edit = props => {
     const showModal = useSelector(state => state.exercises.editExerciseShow);
     const [newExerciseName, setNewExerciseName] = useState("");
 
-    const baseUrl = "api/exercises/";
+    const baseUrl = "http://workoutapp.club/api/exercises/";
 
     if (!showModal) {
         return null;
