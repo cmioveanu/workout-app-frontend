@@ -16,7 +16,7 @@ export const Register = () => {
         event.preventDefault();
 
         if (password === passwordConfirm) {
-            fetch('https://hit-workout-app-backend.herokuapp.com/api/account/register', {
+            fetch('api/account/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

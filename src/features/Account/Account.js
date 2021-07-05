@@ -18,7 +18,7 @@ export const Account = () => {
         event.preventDefault();
 
         if (newEmail === emailConfirm) {
-            fetch('https://hit-workout-app-backend.herokuapp.com/api/account/email', {
+            fetch('api/account/email', {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json',
@@ -46,7 +46,7 @@ export const Account = () => {
         event.preventDefault();
 
         if (newPassword === passwordConfirm) {
-            fetch('https://hit-workout-app-backend.herokuapp.com/api/account/password', {
+            fetch('api/account/password', {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'

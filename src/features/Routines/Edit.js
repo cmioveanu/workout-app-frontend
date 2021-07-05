@@ -17,7 +17,7 @@ export const Edit = props => {
     const [newRoutineName, setNewRoutineName] = useState("");
     const [selectedExerciseID, setSelectedExerciseID] = useState(null);
 
-    const baseUrl = "https://hit-workout-app-backend.herokuapp.com/api/routines/";
+    const baseUrl = "api/routines/";
 
 
     //update state when exercises are loaded in the app

@@ -9,7 +9,7 @@ export const Edit = props => {
     const showModal = useSelector(state => state.exercises.editExerciseShow);
     const [newExerciseName, setNewExerciseName] = useState("");
 
-    const baseUrl = "https://hit-workout-app-backend.herokuapp.com/api/exercises/";
+    const baseUrl = "api/exercises/";
 
     if (!showModal) {
         return null;
