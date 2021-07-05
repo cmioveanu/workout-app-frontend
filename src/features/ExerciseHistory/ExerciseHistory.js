@@ -14,7 +14,7 @@ export const ExerciseHistory = () => {
     //get the history of the exercise when component is mounted
     useEffect(() => {
         const fetchExerciseHistory = async () => {
-            const baseUrl = "http://workoutapp.club//api/exercises/";
+            const baseUrl = "api/exercises/";
             const fetchUrl = baseUrl + activeExercise.id + `/${numberOfHistoryRows}`;
 
             const exerciseHistoryResults = await fetch(fetchUrl);

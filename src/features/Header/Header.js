@@ -15,7 +15,7 @@ export const Header = () => {
 
     //log out and redirect to login page
     const handleLogoutClick = () => {
-        fetch('http://workoutapp.club/api/account/logout');
+        fetch('api/account/logout');
         dispatch(logOut());
         setMenuOpen(false);
     }

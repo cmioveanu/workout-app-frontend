@@ -27,14 +27,12 @@ export const Routines = () => {
 
     //add Routine to database when pressing "Create new routine"
     const handleSubmit = (event) => {
-        fetch("http://workoutapp.club/api/routines", {
+        fetch("api/routines", {
             method: 'POST',
             body: JSON.stringify({ "name": newRoutineName }),
             headers: {
                 "content-type": "application/json"
-            },
-            credentials: 'include'
-
+            }
         })
             .then(res => res.json())
             .then(jsonRes => dispatch(getRoutinesList(jsonRes)));

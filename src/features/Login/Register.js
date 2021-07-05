@@ -16,7 +16,7 @@ export const Register = () => {
         event.preventDefault();
 
         if (password === passwordConfirm) {
-            fetch('http://workoutapp.club/api/account/register', {
+            fetch('api/account/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
