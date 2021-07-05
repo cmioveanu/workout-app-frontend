@@ -32,7 +32,7 @@ const App = () => {
 
   useEffect(() => {
     //if user is logged in on the server, set the state as logged in
-    fetch('http://workoutapp.club/api/account/checkLoginStatus').then(res => {
+    fetch('api/account/checkLoginStatus').then(res => {
         if (res.status === 200 || res.status === 304) {
             dispatch(logIn());
         }
@@ -43,7 +43,7 @@ const App = () => {
   //get Routines and set first index as active routine when component mounts
   useEffect(() => {
     const getRoutines = async () => {
-      const routines = await fetch("http://workoutapp.club/api/routines");
+      const routines = await fetch("api/routines");
       const jsonRoutines = await routines.json();
 
       dispatch(getRoutinesList(jsonRoutines));
@@ -59,7 +59,7 @@ const App = () => {
   //get the exercises that belong to routines
   useEffect(() => {
     const getExercisesRoutines = async () => {
-      const exercisesRoutines = await fetch("http://workoutapp.club/api/routines/exercises");
+      const exercisesRoutines = await fetch("api/routines/exercises");
       const jsonExercisesRoutines = await exercisesRoutines.json();
 
       dispatch(getRoutinesExercisesList(jsonExercisesRoutines));
@@ -74,7 +74,7 @@ const App = () => {
   //get exercises and set first index as active element when component mounts
   useEffect(() => {
     const getExercises = async () => {
-      const exercises = await fetch("http://workoutapp.club/api/exercises");
+      const exercises = await fetch("api/exercises");
       const jsonExercises = await exercises.json();
 
       dispatch(getExercisesList(jsonExercises));

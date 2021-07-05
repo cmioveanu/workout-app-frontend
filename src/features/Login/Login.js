@@ -24,7 +24,7 @@ export const Login = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        fetch('http://workoutapp.club/api/account/login', {
+        fetch('api/account/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
